@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/jcMPP.Android/bin/Debug
+/jcMPP.Android/obj/Debug
+/jcMPP.PCL/bin/Debug
+/jcMPP.UWP/obj/x86/Debug
+/jcMPP.PCL/obj/Debug
