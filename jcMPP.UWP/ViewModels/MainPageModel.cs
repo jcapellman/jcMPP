@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Windows.Networking;
@@ -18,8 +19,12 @@ namespace jcMPP.UWP.ViewModels {
             {
                 _hostName = value;
                 OnPropertyChanged();
+
+                Enabled_btnStartScan = IsFormValid;
             }
         }
+
+        private bool IsFormValid => !string.IsNullOrEmpty(HostName) && SelectedPorts.Any();
 
         private ObservableCollection<string> _ports;
 
@@ -42,6 +47,8 @@ namespace jcMPP.UWP.ViewModels {
             {
                 _selectedPorts = value;
                 OnPropertyChanged();
+
+                Enabled_btnStartScan = IsFormValid;
             }
         }
 
@@ -57,12 +64,21 @@ namespace jcMPP.UWP.ViewModels {
             }
         }
 
+        private bool _enabled_btnStartScan;
+
+        public bool Enabled_btnStartScan {
+            get { return _enabled_btnStartScan; }
+            set { _enabled_btnStartScan = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         public MainPageModel() {
             HideRunning();
 
-            Ports = new ObservableCollection<string> {"21", "22", "25", "80"};
+            Ports = new ObservableCollection<string> { "21", "22", "25", "80" };
+
+            Enabled_btnStartScan = IsFormValid;
         }
 
         public async Task<bool> RunScan() {
