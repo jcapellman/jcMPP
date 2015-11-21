@@ -19,6 +19,12 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="IsIndeterminate" Value="True" />
     </Style>
+
+    <Style TargetType="TextBlock" x:Key="EntityLabel">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="0,20,0,10" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
     <!-- End of Universal -->
     
     <!-- Main Page -->

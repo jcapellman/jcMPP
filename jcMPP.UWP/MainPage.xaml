@@ -39,7 +39,7 @@
         <Pivot Grid.Row="1">
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="Setup Scan" Style="{StaticResource PivotHeaderTextBlock}" />
+                    <TextBlock Text="setup scan" Style="{StaticResource PivotHeaderTextBlock}" />
                 </PivotItem.Header>
                 
                 <Grid>
@@ -51,11 +51,11 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="hostname" FontSize="20" Margin="0,20,0,10" Foreground="White" />
+                    <TextBlock Grid.Row="0" Text="hostname" Style="{StaticResource EntityLabel}" />
 
                     <TextBox Grid.Row="1" Text="{Binding HostName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     
-                    <TextBlock Grid.Row="2" Text="ports to scan" FontSize="20" Margin="0,20,0,10" Foreground="White" />
+                    <TextBlock Grid.Row="2" Text="ports to scan" Style="{StaticResource EntityLabel}"/>
                     
                     <ListView Grid.Row="3" Margin="0,0,10,20" x:Name="lvPorts" ItemsSource="{Binding Ports}" SelectionChanged="lvPorts_OnSelectionChanged" SelectionMode="Multiple">
                         <ListView.ItemTemplate>
@@ -79,7 +79,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="Scan Results" Style="{StaticResource PivotHeaderTextBlock}" />
+                    <TextBlock Text="scan results" Style="{StaticResource PivotHeaderTextBlock}" />
                 </PivotItem.Header>
                 
                 <ListView ItemsSource="{Binding ScanResults}">
@@ -112,6 +112,7 @@
     
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton Icon="Save" Label="Share Results" Click="btnShareResults_Click" IsEnabled="{Binding Enabled_btnShareResults, Mode=TwoWay}" />
             <AppBarButton Icon="Setting" Label="Settings" />
         </CommandBar>
     </Page.BottomAppBar>

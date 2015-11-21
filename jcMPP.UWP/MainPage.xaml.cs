@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
-
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -23,6 +24,20 @@ namespace jcMPP.UWP {
 
         private async void BtnStartScan_OnClick(object sender, RoutedEventArgs e) {
             var result = await viewModel.RunScan();
+        }
+
+        private void btnShareResults_Click(object sender, RoutedEventArgs e) {
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+
+            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+
+            DataTransferManager.ShowShareUI();
+        }
+
+        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args) {
+            args.Request.Data.Properties.Title = $"Port Scan of {viewModel.HostName} at {DateTime.Now}";
+
+            args.Request.Data.SetText(viewModel.ScanResultForShare);
         }
     }
 }

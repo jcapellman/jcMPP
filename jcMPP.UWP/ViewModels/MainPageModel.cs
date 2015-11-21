@@ -13,9 +13,11 @@ namespace jcMPP.UWP.ViewModels {
 
         private string _hostName;
 
-        public string HostName {
+        public string HostName
+        {
             get { return _hostName; }
-            set {
+            set
+            {
                 _hostName = value;
                 OnPropertyChanged();
 
@@ -27,9 +29,11 @@ namespace jcMPP.UWP.ViewModels {
 
         private ObservableCollection<PortListingItem> _ports;
 
-        public ObservableCollection<PortListingItem> Ports {
+        public ObservableCollection<PortListingItem> Ports
+        {
             get { return _ports; }
-            set {
+            set
+            {
                 _ports = new ObservableCollection<PortListingItem>(value.OrderBy(a => a.PortNumber));
                 OnPropertyChanged();
             }
@@ -37,9 +41,11 @@ namespace jcMPP.UWP.ViewModels {
 
         private ObservableCollection<PortListingItem> _selectedPorts;
 
-        public ObservableCollection<PortListingItem> SelectedPorts {
+        public ObservableCollection<PortListingItem> SelectedPorts
+        {
             get { return _selectedPorts; }
-            set {
+            set
+            {
                 _selectedPorts = value;
                 OnPropertyChanged();
 
@@ -49,9 +55,11 @@ namespace jcMPP.UWP.ViewModels {
 
         private ObservableCollection<PortScanListingItem> _scanResults;
 
-        public ObservableCollection<PortScanListingItem> ScanResults {
+        public ObservableCollection<PortScanListingItem> ScanResults
+        {
             get { return _scanResults; }
-            set {
+            set
+            {
                 _scanResults = value;
                 OnPropertyChanged();
             }
@@ -59,11 +67,19 @@ namespace jcMPP.UWP.ViewModels {
 
         private bool _enabled_btnStartScan;
 
-        public bool Enabled_btnStartScan {
+        public bool Enabled_btnStartScan
+        {
             get { return _enabled_btnStartScan; }
             set { _enabled_btnStartScan = value; OnPropertyChanged(); }
         }
 
+        private bool _enabled_btnShareResults;
+
+        public bool Enabled_btnShareResults
+        {
+            get { return _enabled_btnShareResults; }
+            set { _enabled_btnShareResults = value; OnPropertyChanged(); }
+        }
         #endregion
 
         public MainPageModel() {
@@ -74,8 +90,21 @@ namespace jcMPP.UWP.ViewModels {
                 new PortListingItem("HTTP", 80),
                 new PortListingItem("SMTP", 25)
             };
-            
+
             Enabled_btnStartScan = IsFormValid;
+            Enabled_btnShareResults = false;
+        }
+
+        public string ScanResultForShare {
+            get {
+                var str = "Port Description\tPort #\tOpen?" + "<br/>";
+
+                foreach (var result in ScanResults) {
+                    str += $"{result.Description}\t{result.PortNumber}\t{result.IsOpen}" + "<br/>";
+                }
+
+                return str;
+            }
         }
 
         public async Task<bool> RunScan() {
@@ -103,6 +132,8 @@ namespace jcMPP.UWP.ViewModels {
                     ScanResults.Add(new PortScanListingItem(portItem, isSuccessful));
                 }
             }
+
+            Enabled_btnShareResults = ScanResults.Any();
 
             HideRunning();
 
