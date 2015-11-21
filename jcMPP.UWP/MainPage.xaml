@@ -28,13 +28,13 @@
             </Grid.ColumnDefinitions>
 
             <ProgressBar Grid.Column="1" Visibility="{Binding ProgressBarRunning, Mode=TwoWay}" IsIndeterminate="True" Foreground="White" />
-            <TextBlock Margin="10,0,10,0" Grid.Column="0" FontSize="20" Text="jcMPP" FontWeight="Black" Foreground="White" />
+            <TextBlock Style="{StaticResource AppHeaderText}" Grid.Column="0" Text="jcMPP" />
         </Grid>
 
         <Pivot Grid.Row="1">
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="Setup Scan" Foreground="White" FontSize="30" />
+                    <TextBlock Text="Setup Scan" Style="{StaticResource PivotHeaderTextBlock}" />
                 </PivotItem.Header>
                 
                 <Grid>
