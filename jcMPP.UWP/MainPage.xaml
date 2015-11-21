@@ -22,9 +22,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Height="30">
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity="0.5" />
+                <SolidColorBrush Color="Black" Opacity="0.25" />
             </Grid.Background>
 
             <Grid.ColumnDefinitions>
@@ -47,11 +47,17 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="0" Text="{Binding HostName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="hostname" />
+                    <TextBlock Grid.Row="0" Text="hostname" FontSize="20" Margin="0,20,0,10" Foreground="White" />
+
+                    <TextBox Grid.Row="1" Text="{Binding HostName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     
-                    <ListView Grid.Row="1" Margin="10,20,10,20" x:Name="lvPorts" ItemsSource="{Binding Ports}" SelectionChanged="lvPorts_OnSelectionChanged" SelectionMode="Multiple">
+                    <TextBlock Grid.Row="2" Text="ports to scan" FontSize="20" Margin="0,20,0,10" Foreground="White" />
+                    
+                    <ListView Grid.Row="3" Margin="0,0,10,20" x:Name="lvPorts" ItemsSource="{Binding Ports}" SelectionChanged="lvPorts_OnSelectionChanged" SelectionMode="Multiple">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -67,13 +73,13 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     
-                    <Button x:Name="btnStartScan" IsEnabled="{Binding Enabled_btnStartScan, Mode=TwoWay}" Foreground="White" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" Click="BtnStartScan_OnClick" Content="start scan" />
+                    <Button x:Name="btnStartScan" IsEnabled="{Binding Enabled_btnStartScan, Mode=TwoWay}" Foreground="White" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" Click="BtnStartScan_OnClick" Content="start scan" />
                 </Grid>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="Scan Results" Foreground="White" FontSize="30" />
+                    <TextBlock Text="Scan Results" Style="{StaticResource PivotHeaderTextBlock}" />
                 </PivotItem.Header>
                 
                 <ListView ItemsSource="{Binding ScanResults}">
@@ -103,4 +109,10 @@
             </PivotItem>
         </Pivot>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Setting" Label="Settings" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
