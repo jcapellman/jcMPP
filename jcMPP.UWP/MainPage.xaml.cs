@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using jcMPP.PCL.Objects;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP {
@@ -16,7 +18,7 @@ namespace jcMPP.UWP {
         }
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
-            viewModel.SelectedPorts = new ObservableCollection<string>(lvPorts.SelectedItems.Select(a => a.ToString()).ToList());
+            viewModel.SelectedPorts = new ObservableCollection<PortListingItem>(lvPorts.SelectedItems.Select(a => (PortListingItem)a).ToList());
         }
 
         private async void BtnStartScan_OnClick(object sender, RoutedEventArgs e) {

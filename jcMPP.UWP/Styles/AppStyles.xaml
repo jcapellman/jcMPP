@@ -19,9 +19,29 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="IsIndeterminate" Value="True" />
     </Style>
+    <!-- End of Universal -->
+    
+    <!-- Main Page -->
+    <Style TargetType="Grid" x:Key="MainPage_ScanResult">
+        <Setter Property="Width" Value="200" />
+    </Style>
     
     <Style TargetType="TextBlock" x:Key="MainPage_PortListing">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontSize" Value="20" />
     </Style>
+
+    <Style TargetType="TextBlock" x:Key="MainPage_PortListing_Number">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="MainPage_PortListing_IsOpen">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="50,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <!-- End of Main Page -->
 </ResourceDictionary>

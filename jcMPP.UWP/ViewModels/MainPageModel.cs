@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Windows.Networking;
 using Windows.Networking.Sockets;
+using jcMPP.PCL.Objects;
 
 namespace jcMPP.UWP.ViewModels {
     public class MainPageModel : BaseModel {
@@ -12,11 +13,9 @@ namespace jcMPP.UWP.ViewModels {
 
         private string _hostName;
 
-        public string HostName
-        {
+        public string HostName {
             get { return _hostName; }
-            set
-            {
+            set {
                 _hostName = value;
                 OnPropertyChanged();
 
@@ -24,27 +23,23 @@ namespace jcMPP.UWP.ViewModels {
             }
         }
 
-        private bool IsFormValid => !string.IsNullOrEmpty(HostName) && SelectedPorts.Any();
+        private bool IsFormValid => !string.IsNullOrEmpty(HostName) && SelectedPorts != null && SelectedPorts.Any();
 
-        private ObservableCollection<string> _ports;
+        private ObservableCollection<PortListingItem> _ports;
 
-        public ObservableCollection<string> Ports
-        {
+        public ObservableCollection<PortListingItem> Ports {
             get { return _ports; }
-            set
-            {
-                _ports = value;
+            set {
+                _ports = new ObservableCollection<PortListingItem>(value.OrderBy(a => a.PortNumber));
                 OnPropertyChanged();
             }
         }
 
-        private ObservableCollection<string> _selectedPorts;
+        private ObservableCollection<PortListingItem> _selectedPorts;
 
-        public ObservableCollection<string> SelectedPorts
-        {
+        public ObservableCollection<PortListingItem> SelectedPorts {
             get { return _selectedPorts; }
-            set
-            {
+            set {
                 _selectedPorts = value;
                 OnPropertyChanged();
 
@@ -52,13 +47,11 @@ namespace jcMPP.UWP.ViewModels {
             }
         }
 
-        private ObservableCollection<string> _scanResults;
+        private ObservableCollection<PortScanListingItem> _scanResults;
 
-        public ObservableCollection<string> ScanResults
-        {
+        public ObservableCollection<PortScanListingItem> ScanResults {
             get { return _scanResults; }
-            set
-            {
+            set {
                 _scanResults = value;
                 OnPropertyChanged();
             }
@@ -76,22 +69,26 @@ namespace jcMPP.UWP.ViewModels {
         public MainPageModel() {
             HideRunning();
 
-            Ports = new ObservableCollection<string> { "21", "22", "25", "80" };
-
+            Ports = new ObservableCollection<PortListingItem> {
+                new PortListingItem("FTP", 21),
+                new PortListingItem("HTTP", 80),
+                new PortListingItem("SMTP", 25)
+            };
+            
             Enabled_btnStartScan = IsFormValid;
         }
 
         public async Task<bool> RunScan() {
             ShowRunning();
 
-            ScanResults = new ObservableCollection<string>();
+            ScanResults = new ObservableCollection<PortScanListingItem>();
 
             using (var streamSocket = new StreamSocket()) {
-                foreach (var port in SelectedPorts) {
+                foreach (var portItem in SelectedPorts) {
                     var isSuccessful = true;
 
                     try {
-                        await streamSocket.ConnectAsync(new HostName(HostName), port);
+                        await streamSocket.ConnectAsync(new HostName(HostName), portItem.PortNumber.ToString());
                     } catch (Exception ex) {
                         switch (SocketError.GetStatus(ex.HResult)) {
                             case SocketErrorStatus.HostNotFound:
@@ -103,7 +100,7 @@ namespace jcMPP.UWP.ViewModels {
                         isSuccessful = false;
                     }
 
-                    ScanResults.Add($"Port {port} is {(isSuccessful ? "open" : "closed")}");
+                    ScanResults.Add(new PortScanListingItem(portItem, isSuccessful));
                 }
             }
 

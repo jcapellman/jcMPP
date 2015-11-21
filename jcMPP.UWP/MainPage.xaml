@@ -5,8 +5,13 @@
     xmlns:local="using:jcMPP.UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:jcMPP.UWP.Converters"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+    </Page.Resources>
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/appBG.png" />
@@ -49,7 +54,15 @@
                     <ListView Grid.Row="1" Margin="10,20,10,20" x:Name="lvPorts" ItemsSource="{Binding Ports}" SelectionChanged="lvPorts_OnSelectionChanged" SelectionMode="Multiple">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" Style="{StaticResource MainPage_PortListing}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding Description}" Style="{StaticResource MainPage_PortListing}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding PortNumber, Converter={StaticResource StringFormatConverter}, ConverterParameter='({0})'}" Style="{StaticResource MainPage_PortListing_Number}" />
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -66,7 +79,24 @@
                 <ListView ItemsSource="{Binding ScanResults}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Grid Grid.Column="0" Style="{StaticResource MainPage_ScanResult}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
+                                    <TextBlock Grid.Column="0" Text="{Binding Description}" Style="{StaticResource MainPage_PortListing}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding PortNumber, Converter={StaticResource StringFormatConverter}, ConverterParameter='({0})'}" Style="{StaticResource MainPage_PortListing_Number}" />
+                                </Grid>
+                              
+                                <TextBlock Grid.Column="1" Text="{Binding IsOpen}" Style="{StaticResource MainPage_PortListing_IsOpen}" />
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
