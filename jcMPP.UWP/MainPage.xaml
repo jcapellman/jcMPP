@@ -77,7 +77,7 @@
                 </Grid>
             </PivotItem>
 
-            <PivotItem>
+            <PivotItem IsEnabled="{Binding Enabled_ScanResults, Mode=TwoWay}">
                 <PivotItem.Header>
                     <TextBlock Text="scan results" Style="{StaticResource PivotHeaderTextBlock}" />
                 </PivotItem.Header>

@@ -8,3 +8,8 @@
 /jcMPP.UWP/obj/x86/Debug
 /jcMPP.PCL/obj/Debug
 /jcMPP.UWP/bin/x86/Debug
+/jcMPP.PCL.DataLayer/obj/Debug
+/jcMPP.UWP/bin
+/jcMPP.WebAPI/bin
+/jcMPP.WebAPI/obj/Debug
+/jcMPP.WebAPI.DataLayer/obj/Debug

@@ -67,19 +67,25 @@ namespace jcMPP.UWP.ViewModels {
 
         private bool _enabled_btnStartScan;
 
-        public bool Enabled_btnStartScan
-        {
+        public bool Enabled_btnStartScan {
             get { return _enabled_btnStartScan; }
             set { _enabled_btnStartScan = value; OnPropertyChanged(); }
         }
 
         private bool _enabled_btnShareResults;
 
-        public bool Enabled_btnShareResults
-        {
+        public bool Enabled_btnShareResults {
             get { return _enabled_btnShareResults; }
             set { _enabled_btnShareResults = value; OnPropertyChanged(); }
         }
+
+        private bool _enabled_ScanResults;
+
+        public bool Enabled_ScanResults {
+            get {  return _enabled_ScanResults; }
+            set { _enabled_ScanResults = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         public MainPageModel() {
@@ -93,6 +99,7 @@ namespace jcMPP.UWP.ViewModels {
 
             Enabled_btnStartScan = IsFormValid;
             Enabled_btnShareResults = false;
+            Enabled_ScanResults = false;
         }
 
         public string ScanResultForShare {
@@ -134,6 +141,7 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             Enabled_btnShareResults = ScanResults.Any();
+            Enabled_ScanResults = ScanResults.Any();
 
             HideRunning();
 
