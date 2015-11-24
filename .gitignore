@@ -14,3 +14,5 @@
 /jcMPP.WebAPI/obj/Debug
 /jcMPP.WebAPI.DataLayer/obj/Debug
 /jcMPP.WebAPI.DataLayer/bin/Debug
+/jcMPP.PCL.DataLayer/bin/Debug
+/jcMPP.WebAPI.DataLayer/bin

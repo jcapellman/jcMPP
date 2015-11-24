@@ -34,14 +34,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\FileHandler.cs" />
     <Compile Include="Objects\Files\FileResponseItem.cs" />
     <Compile Include="Objects\PortListingItem.cs" />
     <Compile Include="Objects\PortScanListingItem.cs" />
     <Compile Include="PlatformAbstractions\BaseFileIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\jcMPP.PCL.DataLayer\jcMPP.PCL.DataLayer.csproj">
+      <Project>{116C93AA-CEA2-4FC5-9E64-2A80D33C3358}</Project>
+      <Name>jcMPP.PCL.DataLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
