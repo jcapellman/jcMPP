@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using jcMPP.PCL.Objects;
+using jcMPP.PCL.Handlers;
 
 namespace jcMPP.UWP.ViewModels {
     public class MainPageModel : BaseModel {
@@ -144,6 +145,14 @@ namespace jcMPP.UWP.ViewModels {
             Enabled_ScanResults = ScanResults.Any();
 
             HideRunning();
+
+            return true;
+        }
+
+        public async Task<bool> UpdateDefinitionFiles() {
+            var fileHandler = new FileHandler();
+
+            var files = await fileHandler.GetFiles(new System.Collections.Generic.List<Guid>());
 
             return true;
         }

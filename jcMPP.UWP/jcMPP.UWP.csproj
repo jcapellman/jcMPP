@@ -139,6 +139,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\jcMPP.PCL.DataLayer\jcMPP.PCL.DataLayer.csproj">
+      <Project>{116c93aa-cea2-4fc5-9e64-2a80d33c3358}</Project>
+      <Name>jcMPP.PCL.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\jcMPP.PCL\jcMPP.PCL.csproj">
       <Project>{332bc16d-b48d-4236-b0ae-5e942c0a18fb}</Project>
       <Name>jcMPP.PCL</Name>
