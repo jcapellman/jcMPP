@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -57,6 +59,14 @@ namespace jcMPP.UWP {
             args.Request.Data.Properties.Title = $"Port Scan of {viewModel.HostName} at {DateTime.Now}";
 
             args.Request.Data.SetText(viewModel.ScanResultForShare);
+        }
+
+        private void ApbSettings_OnClick(object sender, RoutedEventArgs e) {
+            if (pSettings.IsOpen) {
+                return;
+            }
+
+            pSettings.IsOpen = true;
         }
     }
 }

@@ -171,7 +171,19 @@ namespace jcMPP.UWP.ViewModels {
         public async Task<bool> UpdateDefinitionFiles() {
             var fileHandler = new FileHandler();
 
-            var files = await fileHandler.GetFiles(new System.Collections.Generic.List<Guid>());
+            var clientList = await _baseFileIO.GetAllClientFiles();
+
+            var files = await fileHandler.GetFiles(clientList);
+
+            await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
+
+            foreach (var file in files) {
+                switch ((ASSET_TYPES)file.AssetTypeID) {
+                    case ASSET_TYPES.PORT_DEFINITIONS:
+                        await _baseFileIO.WriteFile(ASSET_TYPES.PORT_DEFINITIONS, file.Content);
+                        break;
+                }
+            }
 
             return true;
         }

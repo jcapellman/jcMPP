@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects;
 
 namespace jcMPP.PCL.PlatformAbstractions {
     public abstract class BaseFileIO : BasePA {
-        public abstract List<Guid> GetAllClientFiles();
+        public async  Task<List<Guid>> GetAllClientFiles() {
+            var fileList = await GetFile<List<Guid>>(ASSET_TYPES.FILE_LIST);
+
+            return fileList.HasError ? new List<Guid>() : fileList.Value;
+        }
 
         public abstract Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true);
 

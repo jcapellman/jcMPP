@@ -108,12 +108,24 @@
                 </ListView>
             </PivotItem>
         </Pivot>
+        
+        <Popup Grid.Row="0" Grid.RowSpan="2" x:Name="pSettings">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="btnCancel" Content="cancel" Grid.Column="0" />
+                <Button x:Name="btnSave" Content="save" Grid.Column="1" />
+            </Grid>
+        </Popup>
     </Grid>
     
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Save" Label="Share Results" Click="btnShareResults_Click" IsEnabled="{Binding Enabled_btnShareResults, Mode=TwoWay}" />
-            <AppBarButton Icon="Setting" Label="Settings" />
+            <AppBarButton Icon="Setting" Label="Settings" x:Name="apbSettings" Click="ApbSettings_OnClick" />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
