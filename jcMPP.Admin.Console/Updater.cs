@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using jcMPP.PCL.DataLayer.Models;
 using jcMPP.PCL.Enums;
+using jcMPP.PCL.Objects.AssetTypeWrappers;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.PCL.PlatformAbstractions;
 using jcMPP.WebAPI.DataLayer.DbContexts;
@@ -21,7 +22,7 @@ namespace jcMPP.Admin.Console {
             using (var fileCT = new FileContext()) {
                 var file = new Files();
                 file.AssetTypeID = (int)ASSET_TYPES.PORT_DEFINITIONS;
-                file.Content = BasePA.GetJSONStringFromT(portList);
+                file.Content = BasePA.GetJSONStringFromT(new PortDefinitionsResponseItem { Ports = portList });
                 file.Active = true;
                 file.Modified = DateTime.Now;
                 file.Created = DateTime.Now;

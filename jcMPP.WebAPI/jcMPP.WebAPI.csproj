@@ -141,6 +141,10 @@
       <Project>{116C93AA-CEA2-4FC5-9E64-2A80D33C3358}</Project>
       <Name>jcMPP.PCL.DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\jcMPP.PCL\jcMPP.PCL.csproj">
+      <Project>{332BC16D-B48D-4236-B0AE-5E942C0A18FB}</Project>
+      <Name>jcMPP.PCL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\jcMPP.WebAPI.DataLayer\jcMPP.WebAPI.DataLayer.csproj">
       <Project>{73396a66-8f3e-47d6-8330-e4feca697588}</Project>
       <Name>jcMPP.WebAPI.DataLayer</Name>

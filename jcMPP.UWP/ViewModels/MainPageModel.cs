@@ -9,6 +9,7 @@ using Windows.Networking.Sockets;
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects;
 using jcMPP.PCL.Handlers;
+using jcMPP.PCL.Objects.AssetTypeWrappers;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.PCL.PlatformAbstractions;
 
@@ -109,13 +110,13 @@ namespace jcMPP.UWP.ViewModels {
         }
 
         public async Task<bool> LoadData() {
-            var portDefinition = await _baseFileIO.GetFile<List<PortListingItem>>(ASSET_TYPES.PORT_DEFINITIONS);
+            var portDefinition = await _baseFileIO.GetFile<PortDefinitionsResponseItem>(ASSET_TYPES.PORT_DEFINITIONS);
 
             if (portDefinition.HasError) {
                 return false;
             }
 
-            Ports = new ObservableCollection<PortListingItem>(portDefinition.Value);
+            Ports = new ObservableCollection<PortListingItem>(portDefinition.Value.Ports);
 
             return true;
         }

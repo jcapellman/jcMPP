@@ -38,6 +38,7 @@
     <Compile Include="Enums\AssetTypes.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
+    <Compile Include="Objects\AssetTypeWrappers\PortDefinitionsResponseItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="Objects\Files\FileResponseItem.cs" />
     <Compile Include="Objects\Ports\PortListingItem.cs" />
