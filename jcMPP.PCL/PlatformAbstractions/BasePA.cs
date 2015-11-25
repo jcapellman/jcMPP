@@ -25,8 +25,8 @@ namespace jcMPP.PCL.PlatformAbstractions {
             return JsonConvert.DeserializeObject<T>(new string(chars));
         }
 
-        protected static string GetJSONStringFromT<T>(T obj) { return JsonConvert.SerializeObject(obj); }
+        public static string GetJSONStringFromT<T>(T obj) { return JsonConvert.SerializeObject(obj); }
 
-        protected static T GetObjectFromJSONString<T>(string str) { return JsonConvert.DeserializeObject<T>(str); }
+        public static T GetObjectFromJSONString<T>(string str) { return JsonConvert.DeserializeObject<T>(str); }
     }
 }
