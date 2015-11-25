@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Windows.Networking;
 using Windows.Networking.Sockets;
+using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects;
 using jcMPP.PCL.Handlers;
+using jcMPP.PCL.Objects.Ports;
+using jcMPP.PCL.PlatformAbstractions;
 
 namespace jcMPP.UWP.ViewModels {
     public class MainPageModel : BaseModel {
@@ -68,43 +72,58 @@ namespace jcMPP.UWP.ViewModels {
 
         private bool _enabled_btnStartScan;
 
-        public bool Enabled_btnStartScan {
+        public bool Enabled_btnStartScan
+        {
             get { return _enabled_btnStartScan; }
             set { _enabled_btnStartScan = value; OnPropertyChanged(); }
         }
 
         private bool _enabled_btnShareResults;
 
-        public bool Enabled_btnShareResults {
+        public bool Enabled_btnShareResults
+        {
             get { return _enabled_btnShareResults; }
             set { _enabled_btnShareResults = value; OnPropertyChanged(); }
         }
 
         private bool _enabled_ScanResults;
 
-        public bool Enabled_ScanResults {
-            get {  return _enabled_ScanResults; }
+        public bool Enabled_ScanResults
+        {
+            get { return _enabled_ScanResults; }
             set { _enabled_ScanResults = value; OnPropertyChanged(); }
         }
 
         #endregion
 
-        public MainPageModel() {
+        private readonly BaseFileIO _baseFileIO;
+
+        public MainPageModel(BaseFileIO baseFileIO) {
             HideRunning();
 
-            Ports = new ObservableCollection<PortListingItem> {
-                new PortListingItem("FTP", 21),
-                new PortListingItem("HTTP", 80),
-                new PortListingItem("SMTP", 25)
-            };
+            _baseFileIO = baseFileIO;
 
             Enabled_btnStartScan = IsFormValid;
             Enabled_btnShareResults = false;
             Enabled_ScanResults = false;
         }
 
-        public string ScanResultForShare {
-            get {
+        public async Task<bool> LoadData() {
+            var portDefinition = await _baseFileIO.GetFile<List<PortListingItem>>(ASSET_TYPES.PORT_DEFINITIONS);
+
+            if (portDefinition.HasError) {
+                return false;
+            }
+
+            Ports = new ObservableCollection<PortListingItem>(portDefinition.Value);
+
+            return true;
+        }
+
+        public string ScanResultForShare
+        {
+            get
+            {
                 var str = "Port Description\tPort #\tOpen?" + "<br/>";
 
                 foreach (var result in ScanResults) {

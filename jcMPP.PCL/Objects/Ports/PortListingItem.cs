@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace jcMPP.PCL.Objects {
+namespace jcMPP.PCL.Objects.Ports {
     [DataContract]
     public class PortListingItem {
         [DataMember]

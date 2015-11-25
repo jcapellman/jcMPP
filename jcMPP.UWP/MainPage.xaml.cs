@@ -2,10 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-using jcMPP.PCL.Objects;
+using Windows.UI.Xaml.Navigation;
+using jcMPP.PCL.Objects.Ports;
+using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP {
@@ -15,7 +17,24 @@ namespace jcMPP.UWP {
         public MainPage() {
             this.InitializeComponent();
 
-            DataContext = new MainPageModel();
+            DataContext = new MainPageModel(new UWPFileIO());
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            var result = await viewModel.LoadData();
+
+            if (result) {
+                return;
+            }
+
+            var dialog = new MessageDialog("Definitions not found, do you want to download them?");
+            var dialogResult = await dialog.ShowAsync();
+
+            result = await viewModel.UpdateDefinitionFiles();
+
+            if (result) {
+                await viewModel.LoadData();
+            }
         }
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
