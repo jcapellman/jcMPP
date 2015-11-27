@@ -36,7 +36,12 @@ namespace jcMPP.UWP {
 
             if (result) {
                 await viewModel.LoadData();
+
+                return;
             }
+
+            dialog = new MessageDialog("Could not connect, please try again later");
+            await dialog.ShowAsync();
         }
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
