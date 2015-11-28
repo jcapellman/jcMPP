@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -32,20 +32,28 @@ namespace jcMPP.UWP {
             var dialogResult = await ShowDialogPrompt("Definitions not found, do you want to download them?");
 
             if (dialogResult) {
-                result = await viewModel.UpdateDefinitionFiles();
+                result = await CheckForUpdatedDefinitions();
 
                 if (result) {
-                    await viewModel.LoadData();
-
                     return;
                 }
-
-                ShowDialog("Could not connect, please try again later");
-
-                return;
             }
 
             ShowDialog("With no definitions found, scanning cannot occur");
+        }
+
+        private async Task<bool> CheckForUpdatedDefinitions() {
+            var result = await viewModel.UpdateDefinitionFiles();
+
+            if (result) {
+                await viewModel.LoadData();
+
+                return true;
+            }
+
+            ShowDialog("Could not connect, please try again later");
+
+            return false;
         }
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -76,6 +84,14 @@ namespace jcMPP.UWP {
             }
 
             pSettings.IsOpen = true;
+        }
+
+        private void BtnCancel_OnClick(object sender, RoutedEventArgs e) {
+            pSettings.IsOpen = false;
+        }
+
+        private async void BtnCheckForUpdates_OnClick(object sender, RoutedEventArgs e) {
+            var result = await CheckForUpdatedDefinitions();
         }
     }
 }

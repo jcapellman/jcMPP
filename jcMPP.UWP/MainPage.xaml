@@ -109,15 +109,35 @@
             </PivotItem>
         </Pivot>
         
-        <Popup Grid.Row="0" Grid.RowSpan="2" x:Name="pSettings">
-            <Grid>
+        <Popup Grid.Row="0" Grid.RowSpan="2" Width="600" Height="400" x:Name="pSettings">
+            <Grid Width="600" Height="400">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5" />
+                </Grid.Background>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <Button x:Name="btnCancel" Content="cancel" Grid.Column="0" />
-                <Button x:Name="btnSave" Content="save" Grid.Column="1" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="settings" Foreground="White" FontSize="24" Margin="10,10,0,0" />
+                
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Button x:Name="btnCheckForUpdates" Content="check for definition updates" Click="BtnCheckForUpdates_OnClick" />
+                </Grid>
+                
+                <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnCancel" HorizontalAlignment="Left" Click="BtnCancel_OnClick" Content="cancel" Grid.Column="0" Margin="10,0,0,10" />
+                <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnSave" HorizontalAlignment="Right" Content="save" Grid.Column="1" Margin="0,0,10,10" />
             </Grid>
         </Popup>
     </Grid>
