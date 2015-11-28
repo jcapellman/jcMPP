@@ -1,4 +1,4 @@
-﻿<Page
+﻿<local:BasePage
     x:Class="jcMPP.UWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -128,4 +128,4 @@
             <AppBarButton Icon="Setting" Label="Settings" x:Name="apbSettings" Click="ApbSettings_OnClick" />
         </CommandBar>
     </Page.BottomAppBar>
-</Page>
+</local:BasePage>

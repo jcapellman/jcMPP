@@ -13,7 +13,7 @@ using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP {
-    public sealed partial class MainPage : Page {
+    public sealed partial class MainPage : BasePage {
         private MainPageModel viewModel => (MainPageModel)DataContext;
 
         public MainPage() {
@@ -29,19 +29,23 @@ namespace jcMPP.UWP {
                 return;
             }
 
-            var dialog = new MessageDialog("Definitions not found, do you want to download them?");
-            var dialogResult = await dialog.ShowAsync();
+            var dialogResult = await ShowDialogPrompt("Definitions not found, do you want to download them?");
 
-            result = await viewModel.UpdateDefinitionFiles();
+            if (dialogResult) {
+                result = await viewModel.UpdateDefinitionFiles();
 
-            if (result) {
-                await viewModel.LoadData();
+                if (result) {
+                    await viewModel.LoadData();
+
+                    return;
+                }
+
+                ShowDialog("Could not connect, please try again later");
 
                 return;
             }
 
-            dialog = new MessageDialog("Could not connect, please try again later");
-            await dialog.ShowAsync();
+            ShowDialog("With no definitions found, scanning cannot occur");
         }
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
