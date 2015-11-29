@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 
 namespace jcMPP.UWP.ViewModels {
@@ -13,7 +13,7 @@ namespace jcMPP.UWP.ViewModels {
 
         private Visibility _progressBarRunning;
 
-        public Visibility ProgressBarRunning { get {  return _progressBarRunning;;} set { _progressBarRunning = value; OnPropertyChanged(); } }
+        public Visibility ProgressBarRunning { get { return _progressBarRunning; ; } set { _progressBarRunning = value; OnPropertyChanged(); } }
 
         protected void ShowRunning() {
             ProgressBarRunning = Visibility.Visible;
@@ -21,6 +21,14 @@ namespace jcMPP.UWP.ViewModels {
 
         protected void HideRunning() {
             ProgressBarRunning = Visibility.Collapsed;
+        }
+
+        public bool HasInternetConnection {
+            get {
+                var result = NetworkInformation.GetInternetConnectionProfile();
+
+                return result != null;
+            }
         }
     }
 }

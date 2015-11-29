@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Windows.Networking;
 using Windows.Networking.Sockets;
+
 using jcMPP.PCL.Enums;
-using jcMPP.PCL.Objects;
 using jcMPP.PCL.Handlers;
 using jcMPP.PCL.Objects.AssetTypeWrappers;
 using jcMPP.PCL.Objects.Ports;
@@ -169,24 +168,36 @@ namespace jcMPP.UWP.ViewModels {
             return true;
         }
 
-        public async Task<bool> UpdateDefinitionFiles() {
-            var fileHandler = new FileHandler();
-
-            var clientList = await _baseFileIO.GetAllClientFiles();
-
-            var files = await fileHandler.GetFiles(clientList);
-
-            await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
-
-            foreach (var file in files) {
-                switch ((ASSET_TYPES)file.AssetTypeID) {
-                    case ASSET_TYPES.PORT_DEFINITIONS:
-                        await _baseFileIO.WriteFile(ASSET_TYPES.PORT_DEFINITIONS, file.Content);
-                        break;
-                }
+        public async Task<DefinitionResultTypes> UpdateDefinitionFiles() {
+            if (!HasInternetConnection) {
+                return DefinitionResultTypes.NO_INTERNET;
             }
 
-            return true;
+            try {
+                var fileHandler = new FileHandler();
+
+                var clientList = await _baseFileIO.GetAllClientFiles();
+
+                var files = await fileHandler.GetFiles(clientList);
+
+                if (!files.Any()) {
+                    return DefinitionResultTypes.NO_UPDATE_NEEDED;
+                }
+
+                await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
+
+                foreach (var file in files) {
+                    switch ((ASSET_TYPES)file.AssetTypeID) {
+                        case ASSET_TYPES.PORT_DEFINITIONS:
+                            await _baseFileIO.WriteFile(ASSET_TYPES.PORT_DEFINITIONS, file.Content);
+                            break;
+                    }
+                }
+
+                return DefinitionResultTypes.UPDATE_SUCCESFULL;
+            } catch (Exception) {
+                return DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER;
+            }
         }
     }
 }

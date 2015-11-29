@@ -7,7 +7,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
+using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -45,13 +45,28 @@ namespace jcMPP.UWP {
         private async Task<bool> CheckForUpdatedDefinitions() {
             var result = await viewModel.UpdateDefinitionFiles();
 
-            if (result) {
+            if (result == DefinitionResultTypes.UPDATE_SUCCESFULL) {
                 await viewModel.LoadData();
-
-                return true;
             }
 
-            ShowDialog("Could not connect, please try again later");
+            var content = string.Empty;
+
+            switch (result) {
+                case DefinitionResultTypes.NO_INTERNET:
+                    content = "No Internet Connection Found";
+                    break;
+                case DefinitionResultTypes.UPDATE_SUCCESFULL:
+                    content = "Updated Defintions Succesfully";
+                    break;
+                case DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER:
+                    content = "Cannot connect to defintion server";
+                    break;
+                case DefinitionResultTypes.NO_UPDATE_NEEDED:
+                    content = "No update needed";
+                    break;
+            }
+
+            ShowDialog(content);
 
             return false;
         }
