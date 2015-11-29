@@ -2,11 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.UWP.PlatformImplementations;

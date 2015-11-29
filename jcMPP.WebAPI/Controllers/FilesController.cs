@@ -10,7 +10,7 @@ namespace jcMPP.WebAPI.Controllers {
     public class FilesController : ApiController {
         // Client Sends Files to server and then the server returns all files the client doesn't have
         [HttpPost]
-        public IEnumerable<GetActiveFilesVIEW> Get(List<Guid> clientFiles) {
+        public List<GetActiveFilesVIEW> Get(List<Guid> clientFiles) {
             using (var fileContext = new FileContext()) {
                 return fileContext.ActiveFilesDS.Where(a => !clientFiles.Contains(a.ID)).ToList();
             }

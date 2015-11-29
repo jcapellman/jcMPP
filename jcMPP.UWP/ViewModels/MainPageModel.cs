@@ -195,7 +195,9 @@ namespace jcMPP.UWP.ViewModels {
                 }
 
                 return DefinitionResultTypes.UPDATE_SUCCESFULL;
-            } catch (Exception) {
+            } catch (Exception ex)
+            {
+                var str = ex;
                 return DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER;
             }
         }
