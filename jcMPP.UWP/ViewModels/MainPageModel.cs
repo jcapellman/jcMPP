@@ -168,6 +168,10 @@ namespace jcMPP.UWP.ViewModels {
             return true;
         }
 
+        public async Task<bool> ClearFiles() {
+            return await _baseFileIO.ClearFiles();
+        }
+
         public async Task<DefinitionResultTypes> UpdateDefinitionFiles() {
             if (!HasInternetConnection) {
                 return DefinitionResultTypes.NO_INTERNET;

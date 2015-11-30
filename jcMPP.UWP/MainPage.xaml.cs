@@ -112,6 +112,8 @@ namespace jcMPP.UWP {
 
         private async void btnClearFiles_OnClick(object sender, RoutedEventArgs e) {
             var result = await viewModel.ClearFiles();
+
+            ShowDialog(result ? "Cleared all files successfully" : "Failed to clear files");
         }
     }
 }
