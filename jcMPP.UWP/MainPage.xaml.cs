@@ -109,5 +109,9 @@ namespace jcMPP.UWP {
         private async void BtnCheckForUpdates_OnClick(object sender, RoutedEventArgs e) {
             var result = await CheckForUpdatedDefinitions();
         }
+
+        private async void btnClearFiles_OnClick(object sender, RoutedEventArgs e) {
+            var result = await viewModel.ClearFiles();
+        }
     }
 }
