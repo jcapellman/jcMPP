@@ -19,7 +19,7 @@ namespace jcMPP.UWP.PlatformImplementations {
 
             return await FileIO.ReadTextAsync(file);
         }
-
+        
         public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true) {
             var storageFolder = ApplicationData.Current.LocalFolder;
 
@@ -60,7 +60,15 @@ namespace jcMPP.UWP.PlatformImplementations {
 
             return new CTO<T>(GetObjectFromBytes<T>(buffer.ToArray()));
         }
-        
+
+        public async override Task<bool> ClearFiles() {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+
+            await storageFolder.DeleteAsync();
+
+            return true;
+        }
+
         private async Task<byte[]> encryptData(string unencryptedData) {
             var Provider = new DataProtectionProvider("LOCAL=user");
 

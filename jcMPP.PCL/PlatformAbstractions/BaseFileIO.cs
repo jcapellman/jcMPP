@@ -16,5 +16,7 @@ namespace jcMPP.PCL.PlatformAbstractions {
         public abstract Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true);
 
         public abstract Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true);
+
+        public abstract Task<bool> ClearFiles();
     }
 }
