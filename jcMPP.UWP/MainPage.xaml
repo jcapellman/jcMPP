@@ -134,8 +134,8 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     
-                    <Button Grid.Row="0" x:Name="btnCheckForUpdates" Content="check for definition updates" Click="BtnCheckForUpdates_OnClick" />
-                    <Button Grid.Row="1" x:Name="btnClearLocalDefinitions" Content="clear local definitions" Click="btnClearFiles_OnClick" />
+                    <Button Grid.Row="0" x:Name="btnCheckForUpdates" Margin="0,0,0,20" HorizontalAlignment="Stretch" Content="check for definition updates" Click="BtnCheckForUpdates_OnClick" />
+                    <Button Grid.Row="1" x:Name="btnClearLocalDefinitions" HorizontalAlignment="Stretch" Content="clear local definitions" Click="btnClearFiles_OnClick" />
                 </Grid>
                 
                 <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnCancel" HorizontalAlignment="Left" Click="BtnCancel_OnClick" Content="cancel" Grid.Column="0" Margin="10,0,0,10" />
