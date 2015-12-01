@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
 using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 

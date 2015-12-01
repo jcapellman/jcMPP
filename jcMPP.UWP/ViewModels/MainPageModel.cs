@@ -120,10 +120,8 @@ namespace jcMPP.UWP.ViewModels {
             return true;
         }
 
-        public string ScanResultForShare
-        {
-            get
-            {
+        public string ScanResultForShare {
+            get {
                 var str = "Port Description\tPort #\tOpen?" + "<br/>";
 
                 foreach (var result in ScanResults) {
@@ -188,7 +186,11 @@ namespace jcMPP.UWP.ViewModels {
                     return DefinitionResultTypes.NO_UPDATE_NEEDED;
                 }
 
-                await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
+                var writeResult = await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
+
+                if (!writeResult.Value) {
+                    throw new Exception("Could not write file databsae");
+                }
 
                 foreach (var file in files) {
                     switch ((ASSET_TYPES)file.AssetTypeID) {
@@ -199,8 +201,7 @@ namespace jcMPP.UWP.ViewModels {
                 }
 
                 return DefinitionResultTypes.UPDATE_SUCCESFULL;
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 var str = ex;
                 return DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER;
             }
