@@ -28,10 +28,14 @@ namespace jcMPP.WebAPI {
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
             app.UseIISPlatformHandler();
-
-            app.UseMvc();
+            
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
-        
+
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
