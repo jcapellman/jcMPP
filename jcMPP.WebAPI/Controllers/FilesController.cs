@@ -9,7 +9,7 @@ using jcMPP.WebAPI.DbContexts;
 using Microsoft.AspNet.Mvc;
 
 namespace jcMPP.WebAPI.Controllers {
-    [Route("api/[controller]")]
+    [Route("api/Files")]
     public class FilesController : Controller {
         // Client Sends Files to server and then the server returns all files the client doesn't have
         [HttpPost]
