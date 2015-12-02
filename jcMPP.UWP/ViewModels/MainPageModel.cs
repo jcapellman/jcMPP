@@ -182,17 +182,17 @@ namespace jcMPP.UWP.ViewModels {
 
                 var files = await fileHandler.GetFiles(clientList);
 
-                if (!files.Any()) {
+                if (!files.Value.Any()) {
                     return DefinitionResultTypes.NO_UPDATE_NEEDED;
                 }
 
-                var writeResult = await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Select(a => a.ID).ToList());
+                var writeResult = await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Value.Select(a => a.ID).ToList());
 
                 if (!writeResult.Value) {
                     throw new Exception("Could not write file databsae");
                 }
 
-                foreach (var file in files) {
+                foreach (var file in files.Value) {
                     switch ((ASSET_TYPES)file.AssetTypeID) {
                         case ASSET_TYPES.PORT_DEFINITIONS:
                             await _baseFileIO.WriteFile(ASSET_TYPES.PORT_DEFINITIONS, file.Content);

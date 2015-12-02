@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using jcMPP.PCL.DataLayer.Models.Views;
+using jcMPP.PCL.Objects;
 using Constants = jcMPP.PCL.Common.Constants;
 
 namespace jcMPP.PCL.Handlers {

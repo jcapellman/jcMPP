@@ -20,3 +20,12 @@
 /jcMPP.Admin.Console/obj
 /jcMPP.PCL/bin/Release
 /jcMPP.PCL/obj/Release
+/artifacts
+/jcMPP.Admin.Console/bin
+/jcMPP.PCL.DataLayer
+/jcMPP.UWP/obj/x86/Release
+/jcMPP.WebAPI.DataLayer/obj/Release
+/jjcMPP.Console/obj
+/wrap/jcMPP.PCL.DataLayer/bin/Release/portable-net45+win+MonoAndroid10+Xamarin.iOS10+MonoTouch10
+/wrap/jcMPP.PCL/bin/Release/portable-net45+win+MonoAndroid10+Xamarin.iOS10+MonoTouch10
+/jcMPP.Android/jcMPP.Android.csproj.bak

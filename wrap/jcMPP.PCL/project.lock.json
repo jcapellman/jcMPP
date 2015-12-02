@@ -1,0 +1,30 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETPortable,Version=v4.5,Profile=Profile7": {
+      "jcMPP.PCL.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile7/win7-x86": {
+      "jcMPP.PCL.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      }
+    }
+  },
+  "libraries": {
+    "jcMPP.PCL.DataLayer/1.0.0": {
+      "type": "project",
+      "path": "../jcMPP.PCL.DataLayer/project.json"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETPortable,Version=v4.5,Profile=Profile7": [
+      "jcMPP.PCL.DataLayer >= 1.0.0-*"
+    ]
+  }
+}

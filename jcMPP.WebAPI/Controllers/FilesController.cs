@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
 
 using jcMPP.PCL.DataLayer.Models.Views;
 using jcMPP.PCL.Objects;
-using jcMPP.WebAPI.DataLayer.DbContexts;
+using jcMPP.WebAPI.DbContexts;
+
+using Microsoft.AspNet.Mvc;
 
 namespace jcMPP.WebAPI.Controllers {
-    public class FilesController : ApiController {
+    [Route("api/[controller]")]
+    public class FilesController : Controller {
         // Client Sends Files to server and then the server returns all files the client doesn't have
         [HttpPost]
         public CTO<List<GetActiveFilesVIEW>> Get(List<Guid> clientFiles) {
