@@ -37,6 +37,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Enums\AssetTypes.cs" />
     <Compile Include="Enums\DefinitionResultTypes.cs" />
+    <Compile Include="Enums\WebAPIResponses.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
     <Compile Include="Objects\AssetTypeWrappers\PortDefinitionsResponseItem.cs" />
