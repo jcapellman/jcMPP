@@ -1,12 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace jcMPP.PCL.Objects.Ports {
-    [DataContract]
     public class PortListingItem {
-        [DataMember]
+        [JsonProperty("portnumber")]
         public int PortNumber { get; set; }
 
-        [DataMember]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
         public  PortListingItem() { }

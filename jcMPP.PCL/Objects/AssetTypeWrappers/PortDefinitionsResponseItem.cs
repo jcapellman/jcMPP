@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 using jcMPP.PCL.Objects.Ports;
+using Newtonsoft.Json;
 
 namespace jcMPP.PCL.Objects.AssetTypeWrappers {
-    [DataContract]
     public class PortDefinitionsResponseItem {
-        [DataMember]
-        public IEnumerable<PortListingItem> Ports { get; set; } 
+        [JsonProperty("ports")]
+        public List<PortListingItem> Ports { get; set; } 
     }
 }
