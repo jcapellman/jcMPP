@@ -20,16 +20,7 @@ namespace jcMPP.Admin.Console {
                 };
 
             using (var fileCT = new FileContext()) {
-                var file = new Files();
-                file.AssetTypeID = (int)ASSET_TYPES.PORT_DEFINITIONS;
-                file.Content = BasePA.GetJSONStringFromT(new PortDefinitionsResponseItem { Ports = portList });
-                file.Active = true;
-                file.Modified = DateTime.Now;
-                file.Created = DateTime.Now;
-                file.ID = Guid.NewGuid();
-
-                fileCT.FilesDS.Add(file);
-                fileCT.SaveChanges();
+                fileCT.AddFile(BasePA.GetJSONStringFromT(new PortDefinitionsResponseItem { Ports = portList }), ASSET_TYPES.PORT_DEFINITIONS);
             }
         }
     }
