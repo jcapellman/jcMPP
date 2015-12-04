@@ -1,6 +1,5 @@
 ﻿using jcMPP.PCL.DataLayer.Models;
 using jcMPP.PCL.DataLayer.Models.Views;
-using jcMPP.PCL.Enums;
 
 using Microsoft.Data.Entity;
 
@@ -10,14 +9,20 @@ namespace jcMPP.WebAPI.DataLayer.DbContexts {
 
         public DbSet<GetActiveFilesVIEW> ActiveFilesDS { get; set; }
 
-        public void AddFile(string content, ASSET_TYPES assetType) {
-            var file = new Files {
-                AssetTypeID = (int) assetType,
-                Content = content
-            };
-            
-            FilesDS.Add(file);
-            SaveChanges();
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Files>()
+                .Property(b => b.Modified)
+                .ValueGeneratedOnAddOrUpdate()
+                .ForSqlServerHasComputedColumnSql("GETDATE()");
+
+            modelBuilder.Entity<Files>()
+                .Property(b => b.Created)
+                .ValueGeneratedOnAdd()
+                .ForSqlServerHasComputedColumnSql("GETDATE()");
+
+            modelBuilder.Entity<Files>()
+                .Property(b => b.Active)
+                .ForSqlServerHasDefaultValue("1");
         }
     }
 }

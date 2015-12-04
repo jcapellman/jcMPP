@@ -19,8 +19,16 @@ namespace jcMPP.Admin.Console {
                     new PortListingItem("HTTP", 80)
                 };
 
-            using (var fileCT = new FileContext()) {
-                fileCT.AddFile(BasePA.GetJSONStringFromT(new PortDefinitionsResponseItem { Ports = portList }), ASSET_TYPES.PORT_DEFINITIONS);
+            using (var fileCT = new FileContext())
+            {
+                var file = new Files
+                {
+                    AssetTypeID = (int) ASSET_TYPES.PORT_DEFINITIONS,
+                    Content = BasePA.GetJSONStringFromT(new PortDefinitionsResponseItem {Ports = portList})
+                };
+
+                fileCT.FilesDS.Add(file);
+                fileCT.SaveChanges();
             }
         }
     }
