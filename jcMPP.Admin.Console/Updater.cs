@@ -6,7 +6,6 @@ using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.AssetTypeWrappers;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.PCL.PlatformAbstractions;
-using jcMPP.WebAPI.DataLayer.DbContexts;
 
 namespace jcMPP.Admin.Console {
     public class Updater {

@@ -80,10 +80,6 @@
       <Project>{332bc16d-b48d-4236-b0ae-5e942c0a18fb}</Project>
       <Name>jcMPP.PCL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\jcMPP.WebAPI.DataLayer\jcMPP.WebAPI.DataLayer.csproj">
-      <Project>{73396a66-8f3e-47d6-8330-e4feca697588}</Project>
-      <Name>jcMPP.WebAPI.DataLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
