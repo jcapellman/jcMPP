@@ -5,7 +5,7 @@ namespace jcMPP.PCL.DataLayer.Models.Views {
     [DataContract]
     public class GetActiveFilesVIEW {
         [DataMember]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
 
         [DataMember]
         public int AssetTypeID { get; set; }

@@ -10,8 +10,8 @@ namespace jcMPP.PCL.Handlers {
     public class FileHandler : BaseHandler {
         public FileHandler() : base(Constants.WEBAPI_ADDRESS, "Files") { }
 
-        public async Task<CTO<List<GetActiveFilesVIEW>>> GetFiles(List<Guid> clientFiles) {
-            return await POST<List<Guid>, CTO<List<GetActiveFilesVIEW>>>(string.Empty, clientFiles);
+        public async Task<CTO<List<GetActiveFilesVIEW>>> GetFiles(List<int> clientFiles) {
+            return await POST<List<int>, CTO<List<GetActiveFilesVIEW>>>(string.Empty, clientFiles);
         }
     }
 }
