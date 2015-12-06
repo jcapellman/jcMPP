@@ -1,0 +1,30 @@
+﻿{
+  "dependencies": {
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "Newtonsoft.Json": "7.0.1"
+  },
+
+  "version": "1.0.0-*",
+  "description": "jcMPP.WebAPI.DataLayer Class Library",
+  "authors": [ "jcape" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "jcMPP.PCL": "1.0.0-*",
+        "jcMPP.PCL.DataLayer": "1.0.0-*"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "jcMPP.PCL": "1.0.0-*",
+        "jcMPP.PCL.DataLayer": "1.0.0-*"
+      }
+    }
+  }
+}

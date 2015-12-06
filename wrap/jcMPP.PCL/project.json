@@ -8,7 +8,8 @@
         "pdb": "../../jcMPP.PCL/obj/{configuration}/jcMPP.PCL.pdb"
       },
       "dependencies": {
-        "jcMPP.PCL.DataLayer": "1.0.0-*"
+        "jcMPP.PCL.DataLayer": "1.0.0-*",
+        "Newtonsoft.Json": "7.0.1"
       }
     }
   }

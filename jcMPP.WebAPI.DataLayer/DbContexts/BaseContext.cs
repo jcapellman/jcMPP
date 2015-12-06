@@ -1,11 +1,10 @@
 ﻿using jcMPP.PCL.DataLayer.Models;
 using Microsoft.Data.Entity;
-using Microsoft.Extensions.Configuration;
 
-namespace jcMPP.WebAPI.DbContexts {
+namespace jcMPP.WebAPI.DataLayer.DbContexts {
     public class BaseContext<T> : DbContext where T: BaseModel {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer(Startup.Configuration["Data:DefaultConnection:ConnectionString"]);
+        //    optionsBuilder.UseSqlServer(Startup.Configuration["Data:DefaultConnection:ConnectionString"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

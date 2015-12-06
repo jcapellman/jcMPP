@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using jcMPP.PCL.DataLayer.Models;
 using jcMPP.PCL.DataLayer.Models.Views;
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects;
-using jcMPP.WebAPI.DbContexts;
+using jcMPP.WebAPI.DataLayer.DbContexts;
 
-namespace jcMPP.WebAPI.DIOL {
+namespace jcMPP.WebAPI.DataLayer.DIOL {
     public class File {
         public void AddFile(string content, ASSET_TYPES assetType) {
             using (var fileContext = new FileContext()) {

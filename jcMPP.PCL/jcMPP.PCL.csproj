@@ -37,12 +37,15 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Enums\AssetTypes.cs" />
     <Compile Include="Enums\DefinitionResultTypes.cs" />
+    <Compile Include="Enums\HashTypes.cs" />
     <Compile Include="Enums\WebAPIResponses.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
     <Compile Include="Objects\AssetTypeWrappers\PortDefinitionsResponseItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="Objects\Files\FileResponseItem.cs" />
+    <Compile Include="Objects\Hashes\HashCrackRequestItem.cs" />
+    <Compile Include="Objects\Hashes\HashCrackResponseItem.cs" />
     <Compile Include="Objects\Ports\PortListingItem.cs" />
     <Compile Include="Objects\Ports\PortScanListingItem.cs" />
     <Compile Include="PlatformAbstractions\BaseFileIO.cs" />
