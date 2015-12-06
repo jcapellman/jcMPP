@@ -1,0 +1,32 @@
+﻿<local:BasePage
+    x:Class="jcMPP.UWP.Views.HashCrackerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:jcMPP.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="hash crack" Style="{StaticResource PivotTitleContentControlStyle}" />
+                </PivotItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="hashes" Style="{StaticResource EntityLabel}" Grid.Row="0" />
+                    <TextBox Text="{Binding Hashes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+
+                    <Button x:Name="btnStartHashCrack" IsEnabled="{Binding Enabled_btnStartHashCrack, Mode=TwoWay}" Foreground="White" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" Click="btnStartHashCrack_OnClick" Content="start hash crack" />
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</local:BasePage>

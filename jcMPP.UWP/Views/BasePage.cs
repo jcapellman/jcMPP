@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
-namespace jcMPP.UWP {
+namespace jcMPP.UWP.Views {
     public class BasePage : Page {
         public async void ShowDialog(string content) {
             var dialog = new MessageDialog(content);

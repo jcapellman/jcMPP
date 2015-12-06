@@ -98,15 +98,35 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BasePage.cs" />
-    <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LandingPageModel.cs" />
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Common\BootStrapper.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
+    <Compile Include="Views\PortScanPage.xaml.cs">
+      <DependentUpon>PortScanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Commands.cs" />
     <Compile Include="PlatformImplementations\UWPFileIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\INavigatable.cs" />
+    <Compile Include="Services\NavigationEventArgs.cs" />
+    <Compile Include="Services\NavigationFacade.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\BaseModel.cs" />
-    <Compile Include="ViewModels\MainPageModel.cs" />
+    <Compile Include="ViewModels\HashCrackerModel.cs" />
+    <Compile Include="ViewModels\PortScanModel.cs" />
+    <Compile Include="Views\HashCrackerPage.xaml.cs">
+      <DependentUpon>HashCrackerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -134,10 +154,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\PortScanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\AppStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HashCrackerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
