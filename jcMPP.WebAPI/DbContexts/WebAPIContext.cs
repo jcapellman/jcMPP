@@ -4,7 +4,7 @@ using jcMPP.PCL.Enums;
 using Microsoft.Data.Entity;
 
 namespace jcMPP.WebAPI.DbContexts {
-    public class WebAPIContext : BaseContext {
+    public class WebAPIContext : BaseContext<WebAPICalls> {
         public DbSet<WebAPICalls> WebAPISet { get; set; }
     
         public void RecordResponse(WebAPIResponses response, double duration) {

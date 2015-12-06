@@ -1,4 +1,6 @@
-﻿namespace jcMPP.PCL.Objects {
+﻿using System;
+
+namespace jcMPP.PCL.Objects {
     public class CTO<T> {
         public T Value { get; set; }
 
@@ -14,6 +16,11 @@
         public CTO(T objectValue, string exception = null) {
             Value = objectValue;
             Exception = exception;
+        }
+
+        public CTO(T objectValue, Exception exception) {
+            Value = objectValue;
+            Exception = exception.ToString();
         }
     }
 }

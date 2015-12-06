@@ -7,10 +7,10 @@ using jcMPP.PCL.Objects;
 
 namespace jcMPP.PCL.PlatformAbstractions {
     public abstract class BaseFileIO : BasePA {
-        public async  Task<List<Guid>> GetAllClientFiles() {
-            var fileList = await GetFile<List<Guid>>(ASSET_TYPES.FILE_LIST);
+        public async  Task<List<int>> GetAllClientFiles() {
+            var fileList = await GetFile<List<int>>(ASSET_TYPES.FILE_LIST);
 
-            return fileList.HasError ? new List<Guid>() : fileList.Value;
+            return fileList.HasError ? new List<int>() : fileList.Value;
         }
 
         public abstract Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true);
