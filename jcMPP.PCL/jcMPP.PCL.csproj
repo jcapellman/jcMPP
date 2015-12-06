@@ -41,6 +41,7 @@
     <Compile Include="Enums\WebAPIResponses.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
+    <Compile Include="Handlers\HashHandler.cs" />
     <Compile Include="Objects\AssetTypeWrappers\PortDefinitionsResponseItem.cs" />
     <Compile Include="Objects\CTO.cs" />
     <Compile Include="Objects\Files\FileResponseItem.cs" />
