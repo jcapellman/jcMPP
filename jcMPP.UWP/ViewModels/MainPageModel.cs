@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,13 +9,22 @@ using Windows.Networking.Sockets;
 
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Handlers;
+using jcMPP.PCL.Objects;
 using jcMPP.PCL.Objects.AssetTypeWrappers;
+using jcMPP.PCL.Objects.Hashes;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.PCL.PlatformAbstractions;
 
 namespace jcMPP.UWP.ViewModels {
     public class MainPageModel : BaseModel {
         #region MVVM Properties
+
+        private string _hashes;
+
+        public string Hashes {
+            get { return _hashes; }
+            set { _hashes = value; OnPropertyChanged(); }
+        }
 
         private string _hostName;
 
@@ -168,6 +178,25 @@ namespace jcMPP.UWP.ViewModels {
 
         public async Task<bool> ClearFiles() {
             return await _baseFileIO.ClearFiles();
+        }
+
+        public async Task<CTO<bool>> SubmitHashes() {
+            var hashHandler = new HashHandler();
+
+            var requestItem = new HashCrackRequestItem();
+
+            requestItem.HashType = HashTypes.MD5;
+            requestItem.MaximumLength = 50;
+            requestItem.MinimumLength = 1;
+            requestItem.Hashes = new List<string> {Hashes};
+
+;           var result = await hashHandler.SubmitHashes(requestItem);
+
+            if (result.HasError) {
+                return new CTO<bool>(false, result.Exception);
+            }
+
+            return new CTO<bool>(true);
         }
 
         public async Task<DefinitionResultTypes> UpdateDefinitionFiles() {

@@ -107,6 +107,25 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </PivotItem>
+
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="hash crack" Style="{StaticResource PivotTitleContentControlStyle}" />
+                </PivotItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="hashes" Style="{StaticResource EntityLabel}" Grid.Row="0" />
+                    <TextBox Text="{Binding Hashes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+                    
+                    <Button x:Name="btnStartHashCrack" IsEnabled="{Binding Enabled_btnStartHashCrack, Mode=TwoWay}" Foreground="White" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" Click="btnStartHashCrack_OnClick" Content="start hash crack" />
+                </Grid>
+            </PivotItem>
         </Pivot>
         
         <Popup Grid.Row="0" Grid.RowSpan="2" Width="600" Height="400" x:Name="pSettings">

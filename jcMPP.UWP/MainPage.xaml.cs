@@ -115,5 +115,16 @@ namespace jcMPP.UWP {
 
             ShowDialog(result ? "Cleared all files successfully" : "Failed to clear files");
         }
+
+        private async void btnStartHashCrack_OnClick(object sender, RoutedEventArgs e) {
+            var result = await viewModel.SubmitHashes();
+
+            if (result.HasError) {
+                ShowDialog($"Hash Crack Failed (Exception: {result.Exception}");
+                return;
+            }
+
+            ShowDialog("Hash Crack successful");
+        }
     }
 }
