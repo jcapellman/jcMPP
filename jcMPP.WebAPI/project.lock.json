@@ -101,12 +101,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -1814,12 +1826,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -4259,12 +4283,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -5990,12 +6026,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -7706,12 +7754,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -10622,12 +10682,24 @@
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7",
         "dependencies": {
-          "jcMPP.PCL.DataLayer": "1.0.0"
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
         }
       },
       "jcMPP.PCL.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETPortable,Version=v4.5,Profile=Profile7"
+      },
+      "jcMPP.WebAPI.DataLayer/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "jcMPP.PCL": "1.0.0",
+          "jcMPP.PCL.DataLayer": "1.0.0",
+          "Newtonsoft.Json": "7.0.1"
+        }
       },
       "Microsoft.ApplicationInsights/1.1.1-beta": {
         "type": "package",
@@ -13463,6 +13535,10 @@
     "jcMPP.PCL.DataLayer/1.0.0": {
       "type": "project",
       "path": "../wrap/jcMPP.PCL.DataLayer/project.json"
+    },
+    "jcMPP.WebAPI.DataLayer/1.0.0": {
+      "type": "project",
+      "path": "../jcMPP.WebAPI.DataLayer/project.json"
     },
     "EntityFramework.Core/7.0.0-rc1-final": {
       "type": "package",
@@ -18834,7 +18910,8 @@
       "Microsoft.Extensions.Logging.Debug >= 1.0.0-rc1-final",
       "EntityFramework.Core >= 7.0.0-rc1-final",
       "EntityFramework.MicrosoftSqlServer >= 7.0.0-rc1-final",
-      "Newtonsoft.Json >= 7.0.1"
+      "Newtonsoft.Json >= 7.0.1",
+      "jcMPP.WebAPI.DataLayer >= 1.0.0-*"
     ],
     "DNX,Version=v4.5.1": [
       "jcMPP.PCL >= 1.0.0-*",

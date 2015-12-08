@@ -2,23 +2,20 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
-using jcMPP.UWP.Views;
 
-namespace jcMPP.UWP {
+namespace jcMPP.UWP.Views {
     public sealed partial class PortScanPage : BasePage {
         private PortScanModel viewModel => (PortScanModel)DataContext;  
 
-        public MainPage() {
+        public PortScanPage() {
             this.InitializeComponent();
 
             DataContext = new PortScanModel(new UWPFileIO());

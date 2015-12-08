@@ -57,7 +57,7 @@ namespace jcMPP.UWP.Common {
 
             this.RootFrame = this.RootFrame ?? new Frame();
             this.RootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
-            this.NavigationService = new Services.NavigationService.NavigationService(this.RootFrame);
+            this.NavigationService = new Services.NavigationService(this.RootFrame);
 
             // the user may override to set custom content
             await OnInitializeAsync();
