@@ -57,26 +57,26 @@
                     <!-- home -->
                     <RadioButton Command="{Binding NavCommand}" Content="Home" GroupName="Nav">
                         <RadioButton.CommandParameter>
-                            <views:NavType Type="views:MainPage" />
+                            <views:NavType Type="views:LandingPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
                             <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
 
-                    <RadioButton Command="{Binding NavCommand}" Content="Manage Cameras" GroupName="Nav">
+                    <RadioButton Command="{Binding NavCommand}" Content="Port Scan" GroupName="Nav">
                         <RadioButton.CommandParameter>
-                            <views:NavType Type="views:ManageCameras" />
+                            <views:NavType Type="views:PortScanPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
                             <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
-                    
+
                     <!-- about -->
-                    <RadioButton Command="{Binding NavCommand}" Content="About" GroupName="Nav">
+                    <RadioButton Command="{Binding NavCommand}" Content="Hash Cracker" GroupName="Nav">
                         <RadioButton.CommandParameter>
-                            <views:NavType Type="views:AboutPage" />
+                            <views:NavType Type="views:HashCrackerPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
                             <TextBlock Text="" />
@@ -84,21 +84,6 @@
                     </RadioButton>
 
                 </StackPanel>
-
-                <StackPanel Grid.Row="2">
-
-                    <!-- settings -->
-                    <RadioButton Command="{Binding NavCommand}" Content="Settings" GroupName="Nav">
-                        <RadioButton.CommandParameter>
-                            <views:NavType Type="views:SettingsPage" />
-                        </RadioButton.CommandParameter>
-                        <RadioButton.Tag>
-                            <TextBlock Text="" />
-                        </RadioButton.Tag>
-                    </RadioButton>
-
-                </StackPanel>
-
             </Grid>
         </SplitView.Pane>
     </SplitView>

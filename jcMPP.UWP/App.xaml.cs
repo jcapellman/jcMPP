@@ -15,7 +15,7 @@ namespace jcMPP.UWP {
         }
 
         public override Task OnLaunchedAsync(ILaunchActivatedEventArgs e) {
-            this.NavigationService.Navigate(typeof(MainPage));
+            this.NavigationService.Navigate(typeof(Views.LandingPage));
             return Task.FromResult<object>(null);
         }
     }

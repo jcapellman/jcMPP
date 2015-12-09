@@ -27,7 +27,7 @@ namespace jcMPP.UWP.Views
                     var target = radioButton.CommandParameter as NavType;
                     if (target == null)
                         continue;
-                    radioButton.IsChecked = target.Type.Equals(type);
+                    radioButton.IsChecked = target.Type == type;
                 }
                 this.ShellSplitView.IsPaneOpen = false;
                 this.BackCommand.RaiseCanExecuteChanged();
@@ -68,7 +68,7 @@ namespace jcMPP.UWP.Views
             var nav = (App.Current as App).NavigationService;
 
             // when we nav home, clear history
-            if (type.Equals(typeof(LandingPage)))
+            if (type == typeof(LandingPage))
                 nav.ClearHistory();
 
             // navigate only to new pages
