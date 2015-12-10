@@ -14,6 +14,14 @@
     </Page.Resources>
     
     <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        
         <Grid.Background>
             <ImageBrush ImageSource="../Assets/appBG.png" />
         </Grid.Background>
