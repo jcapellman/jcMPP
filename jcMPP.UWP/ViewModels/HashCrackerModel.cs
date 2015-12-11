@@ -5,6 +5,7 @@ using jcMPP.PCL.Enums;
 using jcMPP.PCL.Handlers;
 using jcMPP.PCL.Objects;
 using jcMPP.PCL.Objects.Hashes;
+using jcMPP.PCL.PlatformAbstractions;
 
 namespace jcMPP.UWP.ViewModels {
     public class HashCrackerModel : BaseModel {
@@ -33,6 +34,10 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             return new CTO<bool>(true);
+        }
+
+        public HashCrackerModel(BaseFileIO baseFileIO) : base(baseFileIO)
+        {
         }
     }
 }

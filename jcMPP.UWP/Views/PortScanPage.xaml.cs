@@ -41,34 +41,7 @@ namespace jcMPP.UWP.Views {
             ShowDialog("With no definitions found, scanning cannot occur");
         }
 
-        private async Task<bool> CheckForUpdatedDefinitions() {
-            var result = await viewModel.UpdateDefinitionFiles();
-
-            if (result == DefinitionResultTypes.UPDATE_SUCCESFULL) {
-                await viewModel.LoadData();
-            }
-
-            var content = string.Empty;
-
-            switch (result) {
-                case DefinitionResultTypes.NO_INTERNET:
-                    content = "No Internet Connection Found";
-                    break;
-                case DefinitionResultTypes.UPDATE_SUCCESFULL:
-                    content = "Updated Defintions Succesfully";
-                    break;
-                case DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER:
-                    content = "Cannot connect to defintion server";
-                    break;
-                case DefinitionResultTypes.NO_UPDATE_NEEDED:
-                    content = "No update needed";
-                    break;
-            }
-
-            ShowDialog(content);
-
-            return false;
-        }
+     
 
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
             viewModel.SelectedPorts = new ObservableCollection<PortListingItem>(lvPorts.SelectedItems.Select(a => (PortListingItem)a).ToList());
@@ -92,28 +65,9 @@ namespace jcMPP.UWP.Views {
             args.Request.Data.SetText(viewModel.ScanResultForShare);
         }
 
-        private void ApbSettings_OnClick(object sender, RoutedEventArgs e) {
-            if (pSettings.IsOpen) {
-                return;
-            }
-
-            pSettings.IsOpen = true;
+        public override PortScanModel getVuewModel<T>()
+        {
+            return (PortScanModel) DataContext;
         }
-
-        private void BtnCancel_OnClick(object sender, RoutedEventArgs e) {
-            pSettings.IsOpen = false;
-        }
-
-        private async void BtnCheckForUpdates_OnClick(object sender, RoutedEventArgs e) {
-            var result = await CheckForUpdatedDefinitions();
-        }
-
-        private async void btnClearFiles_OnClick(object sender, RoutedEventArgs e) {
-            var result = await viewModel.ClearFiles();
-
-            ShowDialog(result ? "Cleared all files successfully" : "Failed to clear files");
-        }
-
-       
     }
 }

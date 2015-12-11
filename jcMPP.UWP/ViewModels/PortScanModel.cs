@@ -18,9 +18,7 @@ using jcMPP.PCL.PlatformAbstractions;
 namespace jcMPP.UWP.ViewModels {
     public class PortScanModel : BaseModel {
         #region MVVM Properties
-
-       
-
+        
         private string _hostName;
 
         public string HostName
@@ -101,13 +99,9 @@ namespace jcMPP.UWP.ViewModels {
 
         #endregion
 
-        private readonly BaseFileIO _baseFileIO;
-
-        public PortScanModel(BaseFileIO baseFileIO) {
+        public PortScanModel(BaseFileIO baseFileIO) : base(baseFileIO) {
             HideRunning();
-
-            _baseFileIO = baseFileIO;
-
+            
             Enabled_btnStartScan = IsFormValid;
             Enabled_btnShareResults = false;
             Enabled_ScanResults = false;
@@ -169,49 +163,6 @@ namespace jcMPP.UWP.ViewModels {
             HideRunning();
 
             return true;
-        }
-
-        public async Task<bool> ClearFiles() {
-            return await _baseFileIO.ClearFiles();
-        }
-
-       
-
-        public async Task<DefinitionResultTypes> UpdateDefinitionFiles() {
-            if (!HasInternetConnection) {
-                return DefinitionResultTypes.NO_INTERNET;
-            }
-
-            try {
-                var fileHandler = new FileHandler();
-
-                var clientList = await _baseFileIO.GetAllClientFiles();
-
-                var files = await fileHandler.GetFiles(clientList);
-
-                if (!files.Value.Any()) {
-                    return DefinitionResultTypes.NO_UPDATE_NEEDED;
-                }
-
-                var writeResult = await _baseFileIO.WriteFile(ASSET_TYPES.FILE_LIST, files.Value.Select(a => a.ID).ToList());
-
-                if (!writeResult.Value) {
-                    throw new Exception("Could not write file databsae");
-                }
-
-                foreach (var file in files.Value) {
-                    switch ((ASSET_TYPES)file.AssetTypeID) {
-                        case ASSET_TYPES.PORT_DEFINITIONS:
-                            await _baseFileIO.WriteFile(ASSET_TYPES.PORT_DEFINITIONS, file.Content);
-                            break;
-                    }
-                }
-
-                return DefinitionResultTypes.UPDATE_SUCCESFULL;
-            } catch (Exception ex) {
-                var str = ex;
-                return DefinitionResultTypes.CANT_FIND_DEFINITION_SERVER;
-            }
         }
     }
 }

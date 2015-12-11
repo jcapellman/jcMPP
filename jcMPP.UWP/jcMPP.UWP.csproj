@@ -102,6 +102,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\LandingPageModel.cs" />
+    <Compile Include="ViewModels\SettingsModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
@@ -123,6 +124,9 @@
     </Compile>
     <Compile Include="Views\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
@@ -172,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
