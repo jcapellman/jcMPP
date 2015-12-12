@@ -7,13 +7,15 @@ using jcMPP.PCL.Enums;
 using jcMPP.UWP.PlatformImplementations;
 
 namespace jcMPP.UWP.Views {
-    public abstract class BasePage<T> : Page where T : ViewModels.BaseModel {
-        public T viewModel;
+    public abstract class BasePage : Page {
+        public T viewModel<T>() where T : ViewModels.BaseModel {
+            return (T) DataContext;
+        }
 
-        protected BasePage(UWPFileIO uwpFileIo) {
-            viewModel = (T)Activator.CreateInstance(viewModel.GetType(), uwpFileIo);
+        private ViewModels.BaseModel baseModel => (ViewModels.BaseModel) DataContext;
 
-            DataContext = viewModel;
+        protected BasePage(Type tVM, UWPFileIO uwpFileIo) {
+            DataContext = (ViewModels.BaseModel)Activator.CreateInstance(tVM, uwpFileIo);
         }
 
         public async void ShowDialog(string content) {
@@ -36,7 +38,7 @@ namespace jcMPP.UWP.Views {
         }
 
         public async Task<bool> CheckForUpdatedDefinitions() {
-            var result = await viewModel.UpdateDefinitionFiles();
+            var result = await baseModel.UpdateDefinitionFiles();
 
             var content = string.Empty;
 

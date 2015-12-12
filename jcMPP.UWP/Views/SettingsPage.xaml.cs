@@ -4,14 +4,14 @@ using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {
-    public sealed partial class SettingsPage : BasePage<SettingsModel> {
+    public sealed partial class SettingsPage {
 
-        public SettingsPage() : base(new UWPFileIO()) {
+        public SettingsPage() : base(typeof(SettingsModel), new UWPFileIO()) {
             this.InitializeComponent();
         }
 
         private async void btnClearFiles_OnClick(object sender, RoutedEventArgs e) {
-            var result = await viewModel.ClearFiles();
+            var result = await viewModel<SettingsModel>().ClearFiles();
 
             ShowDialog(result ? "Cleared all files successfully" : "Failed to clear files");
         }

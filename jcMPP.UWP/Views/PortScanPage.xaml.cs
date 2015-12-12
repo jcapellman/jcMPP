@@ -12,14 +12,14 @@ using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {
-    public sealed partial class PortScanPage : BasePage<PortScanModel> {
+    public sealed partial class PortScanPage {
 
-        public PortScanPage() : base(new UWPFileIO()) {
+        public PortScanPage() : base(typeof(PortScanModel), new UWPFileIO()) {
             this.InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
-            var result = await viewModel.LoadData();
+            var result = await viewModel<PortScanModel>().LoadData();
 
             if (result) {
                 return;
@@ -39,11 +39,11 @@ namespace jcMPP.UWP.Views {
         }
         
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
-            viewModel.SelectedPorts = new ObservableCollection<PortListingItem>(lvPorts.SelectedItems.Select(a => (PortListingItem)a).ToList());
+            viewModel<PortScanModel>().SelectedPorts = new ObservableCollection<PortListingItem>(lvPorts.SelectedItems.Select(a => (PortListingItem)a).ToList());
         }
 
         private async void BtnStartScan_OnClick(object sender, RoutedEventArgs e) {
-            var result = await viewModel.RunScan();
+            var result = await viewModel<PortScanModel>().RunScan();
         }
 
         private void btnShareResults_Click(object sender, RoutedEventArgs e) {
@@ -55,9 +55,9 @@ namespace jcMPP.UWP.Views {
         }
 
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args) {
-            args.Request.Data.Properties.Title = $"Port Scan of {viewModel.HostName} at {DateTime.Now}";
+            args.Request.Data.Properties.Title = $"Port Scan of {viewModel<PortScanModel>().HostName} at {DateTime.Now}";
 
-            args.Request.Data.SetText(viewModel.ScanResultForShare);
+            args.Request.Data.SetText(viewModel<PortScanModel>().ScanResultForShare);
         }
     }
 }
