@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using jcMPP.PCL.Enums;
+
 using jcMPP.PCL.Objects.Ports;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {
-    public sealed partial class PortScanPage : BasePage {
-        private PortScanModel viewModel => (PortScanModel)DataContext;  
+    public sealed partial class PortScanPage : BasePage<PortScanModel> {
 
-        public PortScanPage() {
+        public PortScanPage() : base(new UWPFileIO()) {
             this.InitializeComponent();
-
-            DataContext = new PortScanModel(new UWPFileIO());
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
@@ -40,9 +37,7 @@ namespace jcMPP.UWP.Views {
 
             ShowDialog("With no definitions found, scanning cannot occur");
         }
-
-     
-
+        
         private void lvPorts_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
             viewModel.SelectedPorts = new ObservableCollection<PortListingItem>(lvPorts.SelectedItems.Select(a => (PortListingItem)a).ToList());
         }
@@ -63,11 +58,6 @@ namespace jcMPP.UWP.Views {
             args.Request.Data.Properties.Title = $"Port Scan of {viewModel.HostName} at {DateTime.Now}";
 
             args.Request.Data.SetText(viewModel.ScanResultForShare);
-        }
-
-        public override PortScanModel getVuewModel<T>()
-        {
-            return (PortScanModel) DataContext;
         }
     }
 }

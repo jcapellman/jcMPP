@@ -1,4 +1,4 @@
-﻿<local:BasePage
+﻿<views:BasePage x:TypeArguments="T" xmlns:views="using:jcMPP.UWP.Views"
     x:Class="jcMPP.UWP.Views.HashCrackerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -29,4 +29,4 @@
             </PivotItem>
         </Pivot>
     </Grid>
-</local:BasePage>
+</views:BasePage>

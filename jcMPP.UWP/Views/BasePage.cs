@@ -2,14 +2,19 @@
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
-using jcMPP.PCL.Enums;
 
-using BaseModel = jcMPP.PCL.DataLayer.Models.BaseModel;
+using jcMPP.PCL.Enums;
+using jcMPP.UWP.PlatformImplementations;
 
 namespace jcMPP.UWP.Views {
-    public abstract class BasePage : Page
-    {
-        public abstract T getVuewModel<T>() where T : ViewModels.BaseModel;
+    public abstract class BasePage<T> : Page where T : ViewModels.BaseModel {
+        public T viewModel;
+
+        protected BasePage(UWPFileIO uwpFileIo) {
+            viewModel = (T)Activator.CreateInstance(viewModel.GetType(), uwpFileIo);
+
+            DataContext = viewModel;
+        }
 
         public async void ShowDialog(string content) {
             var dialog = new MessageDialog(content);
@@ -30,8 +35,8 @@ namespace jcMPP.UWP.Views {
             return result.Label == "Yes";
         }
 
-        public async Task<bool> CheckForUpdatedDefinitions<T>() where T : ViewModels.BaseModel {
-            var result = await getVuewModel<T>().UpdateDefinitionFiles();
+        public async Task<bool> CheckForUpdatedDefinitions() {
+            var result = await viewModel.UpdateDefinitionFiles();
 
             var content = string.Empty;
 

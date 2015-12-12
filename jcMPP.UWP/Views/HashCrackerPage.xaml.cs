@@ -1,11 +1,12 @@
 ﻿using Windows.UI.Xaml;
+
+using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {
     public sealed partial class HashCrackerPage {
-        private HashCrackerModel viewModel => (HashCrackerModel)DataContext;
 
-        public HashCrackerPage() {
+        public HashCrackerPage() : base(new UWPFileIO()) {
             this.InitializeComponent();
         }
 
