@@ -53,8 +53,6 @@
                 </ScrollViewer>
 
                 <StackPanel x:Name="RadioButtonContainer" Grid.Row="1">
-
-                    <!-- home -->
                     <RadioButton Command="{Binding NavCommand}" Content="Home" GroupName="Nav">
                         <RadioButton.CommandParameter>
                             <views:NavType Type="views:LandingPage" />
@@ -73,7 +71,6 @@
                         </RadioButton.Tag>
                     </RadioButton>
 
-                    <!-- about -->
                     <RadioButton Command="{Binding NavCommand}" Content="Hash Cracker" GroupName="Nav">
                         <RadioButton.CommandParameter>
                             <views:NavType Type="views:HashCrackerPage" />
@@ -82,7 +79,15 @@
                             <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
-
+                    
+                    <RadioButton Command="{Binding NavCommand}" Content="Settings" GroupName="Nav">
+                        <RadioButton.CommandParameter>
+                            <views:NavType Type="views:SettingsPage" />
+                        </RadioButton.CommandParameter>
+                        <RadioButton.Tag>
+                            <TextBlock Text="" />
+                        </RadioButton.Tag>
+                    </RadioButton>
                 </StackPanel>
             </Grid>
         </SplitView.Pane>

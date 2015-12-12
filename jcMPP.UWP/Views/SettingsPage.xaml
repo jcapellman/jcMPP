@@ -8,6 +8,14 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        
         <Grid.Background>
             <SolidColorBrush Color="Black" Opacity="0.5" />
         </Grid.Background>
