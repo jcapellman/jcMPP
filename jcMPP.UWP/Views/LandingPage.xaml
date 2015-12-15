@@ -7,6 +7,14 @@
     mc:Ignorable="d">
 
     <Grid Background="#1e1e1e">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+    
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,15 +26,39 @@
         </Grid.ColumnDefinitions>
 
         <Button Background="#1e1e1e" Grid.Column="0" Grid.Row="0" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
-            <Image Source="/Assets/Icons/scan.png" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Image Grid.Row="0" Source="/Assets/Icons/scan.png" />
+                <TextBlock Grid.Row="1" Text="port scan" Style="{StaticResource LandingPage_ButtonText}" />
+            </Grid>
         </Button>
 
         <Button Background="#1e1e1e" Grid.Column="1" Grid.Row="0" Click="BtnHash_OnClick" x:Name="btnHash">
-            <Image Source="/Assets/Icons/hash.png" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="/Assets/Icons/hash.png" />
+                <TextBlock Grid.Row="1" Text="hash" Style="{StaticResource LandingPage_ButtonText}" />
+            </Grid>
         </Button>
 
         <Button Background="#1e1e1e" Grid.Column="0" Grid.Row="1" Click="BtnSettings_OnClick" x:Name="btnSettings">
-            <Image Source="/Assets/Icons/settings.png" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="/Assets/Icons/settings.png" />
+                <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource LandingPage_ButtonText}" />
+            </Grid>
         </Button>
     </Grid>
 </Page>

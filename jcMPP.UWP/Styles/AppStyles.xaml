@@ -50,4 +50,14 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
     <!-- End of Main Page -->
+    
+    <!-- Landing Page -->
+    <Style TargetType="TextBlock" x:Key="LandingPage_ButtonText">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    <!-- End of Landing Page -->
 </ResourceDictionary>
