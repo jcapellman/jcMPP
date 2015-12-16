@@ -36,13 +36,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.25" />
             </Grid.Background>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <ProgressBar Grid.Column="1" Visibility="{Binding ProgressBarRunning, Mode=TwoWay}" Style="{StaticResource MainProgressBar}" />
-            <TextBlock Style="{StaticResource AppHeaderText}" Grid.Column="0" Text="jcMPP" />
+            <ProgressBar Visibility="{Binding ProgressBarRunning, Mode=TwoWay}" Style="{StaticResource MainProgressBar}" />
         </Grid>
 
         <Pivot Grid.Row="1">

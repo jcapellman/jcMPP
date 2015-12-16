@@ -6,38 +6,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#1e1e1e">
-        <Grid.Resources>
+    <VariableSizedWrapGrid Background="#1e1e1e" MaximumRowsOrColumns="2">
+        <VariableSizedWrapGrid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
-        </Grid.Resources>
-    
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        </VariableSizedWrapGrid.Resources>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-
-        <Button Background="#1e1e1e" Grid.Column="0" Grid.Row="0" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
+        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
-                <Image Grid.Row="0" Source="/Assets/Icons/scan.png" />
+                <Image Grid.Row="0" MaxWidth="256" MinWidth="64" Source="/Assets/Icons/scan.png" />
                 <TextBlock Grid.Row="1" Text="port scan" Style="{StaticResource LandingPage_ButtonText}" />
             </Grid>
         </Button>
 
-        <Button Background="#1e1e1e" Grid.Column="1" Grid.Row="0" Click="BtnHash_OnClick" x:Name="btnHash">
+        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnHash_OnClick" x:Name="btnHash">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -49,7 +39,7 @@
             </Grid>
         </Button>
 
-        <Button Background="#1e1e1e" Grid.Column="0" Grid.Row="1" Click="BtnSettings_OnClick" x:Name="btnSettings">
+        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnSettings_OnClick" x:Name="btnSettings">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -60,5 +50,5 @@
                 <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource LandingPage_ButtonText}" />
             </Grid>
         </Button>
-    </Grid>
+    </VariableSizedWrapGrid>
 </Page>
