@@ -1,0 +1,46 @@
+﻿<local:BasePage
+    x:Class="jcMPP.UWP.Views.WifiScanPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:jcMPP.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:jcMPP.UWP.Converters"
+    Foreground="White"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:SignalBarsByteToIcon x:Key="SignalBarsConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/appBG.png" />
+        </Grid.Background>
+
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        
+        <ListView ItemsSource="{Binding WiFiNetworks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" FontSize="24" Text="{Binding Ssid}" />
+
+                        <Image Grid.Column="1" Stretch="Fill" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</local:BasePage>

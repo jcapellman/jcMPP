@@ -19,5 +19,9 @@ namespace jcMPP.UWP.Views {
         private void BtnSettings_OnClick(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(SettingsPage));
         }
+
+        private void BtnWifiScan_OnClick(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(WifiScanPage));
+        }
     }
 }

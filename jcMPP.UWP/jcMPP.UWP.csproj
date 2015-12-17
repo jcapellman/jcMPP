@@ -98,11 +98,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\SignalBarsByteToIcon.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\LandingPageModel.cs" />
     <Compile Include="ViewModels\SettingsModel.cs" />
+    <Compile Include="ViewModels\WifiScanModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
@@ -131,6 +133,9 @@
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WifiScanPage.xaml.cs">
+      <DependentUpon>WifiScanPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -143,6 +148,12 @@
     <Content Include="Assets\Icons\hash.png" />
     <Content Include="Assets\Icons\scan.png" />
     <Content Include="Assets\Icons\settings.png" />
+    <Content Include="Assets\Icons\wifiscan.png" />
+    <Content Include="Assets\Icons\wifi_signal_1_bar.png" />
+    <Content Include="Assets\Icons\wifi_signal_2_bar.png" />
+    <Content Include="Assets\Icons\wifi_signal_3_bar.png" />
+    <Content Include="Assets\Icons\wifi_signal_4_bar.png" />
+    <Content Include="Assets\Icons\wifi_signal_5_bar.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -189,6 +200,10 @@
     <Page Include="Views\Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WifiScanPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

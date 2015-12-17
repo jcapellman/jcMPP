@@ -39,6 +39,18 @@
             </Grid>
         </Button>
 
+        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnWifiScan_OnClick" x:Name="btnWifiScan">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="/Assets/Icons/wifiscan.png" />
+                <TextBlock Grid.Row="1" Text="wifi scan" Style="{StaticResource LandingPage_ButtonText}" />
+            </Grid>
+        </Button>
+
         <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnSettings_OnClick" x:Name="btnSettings">
             <Grid>
                 <Grid.RowDefinitions>
