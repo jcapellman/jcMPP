@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:jcMPP.UWP.Converters"
+    xmlns:viewModels="using:jcMPP.UWP.ViewModels"
     Foreground="White"
     mc:Ignorable="d">
 
@@ -13,11 +14,20 @@
         <converters:SignalBarsByteToIcon x:Key="SignalBarsConverter" />
     </Page.Resources>
 
+    <Page.DataContext>
+        <viewModels:WifiScanModel />
+    </Page.DataContext>
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="../Assets/appBG.png" />
         </Grid.Background>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <Grid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
@@ -26,7 +36,9 @@
             </ResourceDictionary>
         </Grid.Resources>
         
-        <ListView ItemsSource="{Binding WiFiNetworks}">
+        <TextBlock Grid.Row="0" Margin="10,10,0,10" Text="WiFi Scan" Style="{StaticResource HeaderTextBlockStyle}" />
+        
+        <ListView Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding WifiNetworks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -35,7 +47,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" FontSize="24" Text="{Binding Ssid}" />
+                        <TextBlock Grid.Column="0" FontSize="24" Text="{Binding Ssid, Mode=OneTime}" />
 
                         <Image Grid.Column="1" Stretch="Fill" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
                     </Grid>

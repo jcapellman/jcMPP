@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Devices.WiFi;
 using Windows.Networking.Connectivity;
 using jcMPP.PCL.PlatformAbstractions;
+using jcMPP.UWP.PlatformImplementations;
 
 namespace jcMPP.UWP.ViewModels {
     public class WifiScanModel : BaseModel {
@@ -23,6 +24,8 @@ namespace jcMPP.UWP.ViewModels {
 
         public WifiScanModel(BaseFileIO baseFileIO) : base(baseFileIO) {
         }
+
+        public WifiScanModel() : base(new UWPFileIO()) { }
 
         public async Task<bool> LoadData() {
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>();
@@ -46,7 +49,7 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>(WifiNetworks.OrderByDescending(a => a.SignalBars));
-
+            
             return true;
         }
     }
