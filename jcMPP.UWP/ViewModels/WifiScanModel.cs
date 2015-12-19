@@ -49,7 +49,7 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>(WifiNetworks.OrderByDescending(a => a.SignalBars));
-            
+
             return true;
         }
     }

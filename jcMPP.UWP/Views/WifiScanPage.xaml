@@ -41,15 +41,22 @@
         <ListView Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding WifiNetworks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" FontSize="24" Text="{Binding Ssid, Mode=OneTime}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="24" Text="{Binding Ssid, Mode=OneTime}" />
+                        <Image Grid.Column="1" Grid.Row="0" Stretch="Fill" HorizontalAlignment="Left" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
 
-                        <Image Grid.Column="1" Stretch="Fill" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20" Margin="0,0,0,0" Text="authentication" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding SecuritySettings.NetworkAuthenticationType, Mode=OneTime}" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
