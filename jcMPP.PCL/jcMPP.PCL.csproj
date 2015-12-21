@@ -39,6 +39,7 @@
     <Compile Include="Enums\DefinitionResultTypes.cs" />
     <Compile Include="Enums\HashTypes.cs" />
     <Compile Include="Enums\WebAPIResponses.cs" />
+    <Compile Include="Enums\WiFiScanResultTypes.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
     <Compile Include="Handlers\HashHandler.cs" />

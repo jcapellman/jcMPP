@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.WiFi;
-using Windows.Networking.Connectivity;
+
+using jcMPP.PCL.Enums;
 using jcMPP.PCL.PlatformAbstractions;
 using jcMPP.UWP.PlatformImplementations;
 
@@ -27,19 +26,21 @@ namespace jcMPP.UWP.ViewModels {
 
         public WifiScanModel() : base(new UWPFileIO()) { }
 
-        public async Task<bool> LoadData() {
+        public async Task<WiFiScanResultTypes> LoadData() {
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>();
 
             var access = await WiFiAdapter.RequestAccessAsync();
 
             if (access != WiFiAccessStatus.Allowed) {
-                return false;
+                return WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD;
             }
 
             var result = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
 
             if (result.Count > 0) {
                 _adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
+            } else {
+                return WiFiScanResultTypes.NO_WIFI_CARD;
             }
 
             await _adapter.ScanAsync();
@@ -50,7 +51,7 @@ namespace jcMPP.UWP.ViewModels {
 
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>(WifiNetworks.OrderByDescending(a => a.SignalBars));
 
-            return true;
+            return WiFiScanResultTypes.SUCCESS;
         }
     }
 }
