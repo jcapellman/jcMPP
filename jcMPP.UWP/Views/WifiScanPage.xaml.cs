@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using System;
+using Windows.UI.Xaml.Navigation;
 using jcMPP.PCL.Enums;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -19,6 +20,8 @@ namespace jcMPP.UWP.Views {
                     break;
                 case WiFiScanResultTypes.NO_WIFI_CARD:
                     ShowDialog("No WiFi Card installed");
+                    break;
+                case WiFiScanResultTypes.SUCCESS:
                     break;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Windows.Devices.WiFi;
 
 using jcMPP.PCL.Enums;
@@ -14,24 +15,26 @@ namespace jcMPP.UWP.ViewModels {
 
         private ObservableCollection<WiFiAvailableNetwork> _wifiNetworks;
 
-        public ObservableCollection<WiFiAvailableNetwork> WifiNetworks
-        {
+        public ObservableCollection<WiFiAvailableNetwork> WifiNetworks {
             get { return _wifiNetworks; }
 
             set { _wifiNetworks = value; OnPropertyChanged(); }
         }
 
-        public WifiScanModel(BaseFileIO baseFileIO) : base(baseFileIO) {
-        }
+        public WifiScanModel(BaseFileIO baseFileIO) : base(baseFileIO) { }
 
         public WifiScanModel() : base(new UWPFileIO()) { }
 
         public async Task<WiFiScanResultTypes> LoadData() {
+            ShowRunning();
+            
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>();
 
             var access = await WiFiAdapter.RequestAccessAsync();
 
             if (access != WiFiAccessStatus.Allowed) {
+                HideRunning();
+
                 return WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD;
             }
 
@@ -40,6 +43,8 @@ namespace jcMPP.UWP.ViewModels {
             if (result.Count > 0) {
                 _adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
             } else {
+                HideRunning();
+
                 return WiFiScanResultTypes.NO_WIFI_CARD;
             }
 
@@ -50,6 +55,8 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>(WifiNetworks.OrderByDescending(a => a.SignalBars));
+
+            HideRunning();
 
             return WiFiScanResultTypes.SUCCESS;
         }
