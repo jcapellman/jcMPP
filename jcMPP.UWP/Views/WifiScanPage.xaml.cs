@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using jcMPP.PCL.Enums;
 using jcMPP.UWP.PlatformImplementations;
@@ -14,6 +15,10 @@ namespace jcMPP.UWP.Views {
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             var result = await viewModel<WifiScanModel>().LoadData();
 
+            processResponse(result);
+        }
+
+        private void processResponse(WiFiScanResultTypes result) {
             switch (result) {
                 case WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD:
                     ShowDialog("No Access to WiFi Card");
@@ -24,6 +29,12 @@ namespace jcMPP.UWP.Views {
                 case WiFiScanResultTypes.SUCCESS:
                     break;
             }
+        }
+
+        private async void btnRefresh_OnClick(object sender, RoutedEventArgs e) {
+            var result = await viewModel<WifiScanModel>().LoadData();
+
+            processResponse(result);
         }
     }
 }

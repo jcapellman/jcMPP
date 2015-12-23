@@ -13,6 +13,14 @@ namespace jcMPP.UWP.ViewModels {
     public class WifiScanModel : BaseModel {
         private WiFiAdapter _adapter;
 
+        private bool _Enabled_btnRefresh;
+
+        public bool Enabled_btnRefresh {
+            get { return _Enabled_btnRefresh; }
+
+            set { _Enabled_btnRefresh = value; OnPropertyChanged(); }
+        }
+
         private ObservableCollection<WiFiAvailableNetwork> _wifiNetworks;
 
         public ObservableCollection<WiFiAvailableNetwork> WifiNetworks {
@@ -26,6 +34,8 @@ namespace jcMPP.UWP.ViewModels {
         public WifiScanModel() : base(new UWPFileIO()) { }
 
         public async Task<WiFiScanResultTypes> LoadData() {
+            Enabled_btnRefresh = false;
+
             ShowRunning();
             
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>();
@@ -33,6 +43,8 @@ namespace jcMPP.UWP.ViewModels {
             var access = await WiFiAdapter.RequestAccessAsync();
 
             if (access != WiFiAccessStatus.Allowed) {
+                Enabled_btnRefresh = true;
+
                 HideRunning();
 
                 return WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD;
@@ -43,6 +55,7 @@ namespace jcMPP.UWP.ViewModels {
             if (result.Count > 0) {
                 _adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
             } else {
+                Enabled_btnRefresh = true;
                 HideRunning();
 
                 return WiFiScanResultTypes.NO_WIFI_CARD;
@@ -55,6 +68,8 @@ namespace jcMPP.UWP.ViewModels {
             }
 
             WifiNetworks = new ObservableCollection<WiFiAvailableNetwork>(WifiNetworks.OrderByDescending(a => a.SignalBars));
+
+            Enabled_btnRefresh = true;
 
             HideRunning();
 

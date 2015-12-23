@@ -92,4 +92,10 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Refresh" Label="Refresh" Click="btnRefresh_OnClick"  IsEnabled="{Binding Enabled_btnRefresh, Mode=TwoWay}" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </local:BasePage>
