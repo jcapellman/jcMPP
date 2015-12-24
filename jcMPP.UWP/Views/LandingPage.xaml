@@ -6,7 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <VariableSizedWrapGrid Background="#1e1e1e" MaximumRowsOrColumns="2">
+    <VariableSizedWrapGrid MaximumRowsOrColumns="2">
+        <VariableSizedWrapGrid.Background>
+            <ImageBrush ImageSource="../Assets/appBG.png" />
+        </VariableSizedWrapGrid.Background>
+        
         <VariableSizedWrapGrid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
@@ -15,7 +19,7 @@
             </ResourceDictionary>
         </VariableSizedWrapGrid.Resources>
 
-        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
+        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -27,7 +31,7 @@
             </Grid>
         </Button>
 
-        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnHash_OnClick" x:Name="btnHash">
+        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnHash_OnClick" x:Name="btnHash">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -39,7 +43,7 @@
             </Grid>
         </Button>
 
-        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnWifiScan_OnClick" x:Name="btnWifiScan">
+        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnWifiScan_OnClick" x:Name="btnWifiScan">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -51,27 +55,27 @@
             </Grid>
         </Button>
 
-        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnKeepAlive_OnClick" x:Name="btnKeepAlive">
+        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnKeepAlive_OnClick" x:Name="btnKeepAlive">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Source="/Assets/Icons/wifiscan.png" />
-            <TextBlock Grid.Row="1" Text="wifi scan" Style="{StaticResource LandingPage_ButtonText}" />
+            <Image Grid.Row="0" Source="/Assets/Icons/keepalive.png" />
+            <TextBlock Grid.Row="1" Text="keep alive scan" Style="{StaticResource LandingPage_ButtonText}" />
         </Grid>
         </Button>
     
-        <Button Background="#1e1e1e" MaxWidth="256" MinWidth="64" Click="BtnSettings_OnClick" x:Name="btnSettings">
+        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnSettings_OnClick" x:Name="btnSettings">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Source="/Assets/Icons/keepalive.png" />
-                <TextBlock Grid.Row="1" Text="keep alive" Style="{StaticResource LandingPage_ButtonText}" />
+                <Image Grid.Row="0" Source="/Assets/Icons/settings.png" />
+                <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource LandingPage_ButtonText}" />
             </Grid>
         </Button>
     </VariableSizedWrapGrid>

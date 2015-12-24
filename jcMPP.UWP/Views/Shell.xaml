@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:jcMPP.UWP.Views"
+    RequestedTheme="Dark"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -67,7 +68,7 @@
                             <views:NavType Type="views:PortScanPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
-                            <TextBlock Text="" />
+                            <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
 
@@ -76,7 +77,7 @@
                             <views:NavType Type="views:HashCrackerPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
-                            <TextBlock Text="" />
+                            <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
 
@@ -85,7 +86,7 @@
                             <views:NavType Type="views:WifiScanPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
-                            <TextBlock Text="WiFi Scanner" />
+                            <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
 
@@ -94,7 +95,7 @@
                             <views:NavType Type="views:KeepAliveListingPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
-                            <TextBlock Text="Keep Alive" />
+                            <TextBlock Text=""/>
                         </RadioButton.Tag>
                     </RadioButton>
 
@@ -103,7 +104,7 @@
                             <views:NavType Type="views:SettingsPage" />
                         </RadioButton.CommandParameter>
                         <RadioButton.Tag>
-                            <TextBlock Text="" />
+                            <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
                 </StackPanel>
