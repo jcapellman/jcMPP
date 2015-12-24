@@ -48,6 +48,7 @@
     <Compile Include="Objects\Files\FileResponseItem.cs" />
     <Compile Include="Objects\Hashes\HashCrackRequestItem.cs" />
     <Compile Include="Objects\Hashes\HashCrackResponseItem.cs" />
+    <Compile Include="Objects\KeepAlive\KeepAliveListingItem.cs" />
     <Compile Include="Objects\Ports\PortListingItem.cs" />
     <Compile Include="Objects\Ports\PortScanListingItem.cs" />
     <Compile Include="PlatformAbstractions\BaseFileIO.cs" />

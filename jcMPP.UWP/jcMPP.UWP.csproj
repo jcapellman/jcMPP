@@ -103,12 +103,16 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KeepAliveListingModel.cs" />
     <Compile Include="ViewModels\LandingPageModel.cs" />
     <Compile Include="ViewModels\SettingsModel.cs" />
     <Compile Include="ViewModels\WifiScanModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
+    <Compile Include="Views\KeepAliveListingPage.xaml.cs">
+      <DependentUpon>KeepAliveListingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PortScanPage.xaml.cs">
       <DependentUpon>PortScanPage.xaml</DependentUpon>
     </Compile>
@@ -172,6 +176,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\KeepAliveListingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PortScanPage.xaml">
       <Generator>MSBuild:Compile</Generator>
