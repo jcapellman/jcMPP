@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -11,6 +12,18 @@ namespace jcMPP.UWP.Views {
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             var result = await viewModel<KeepAliveListingModel>().LoadListing();
+        }
+
+        private void BtnCancelAdd_OnClick(object sender, RoutedEventArgs e) {
+            pNewSite.IsOpen = false;
+        }
+
+        private void btnAddSite_Click(object sender, RoutedEventArgs e) {
+            if (pNewSite.IsOpen) {
+                return;
+            }
+
+            pNewSite.IsOpen = true;
         }
     }
 }
