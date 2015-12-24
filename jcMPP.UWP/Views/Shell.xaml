@@ -79,7 +79,25 @@
                             <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
-                    
+
+                    <RadioButton Command="{Binding NavCommand}" Content="WiFi Scan" GroupName="Nav">
+                        <RadioButton.CommandParameter>
+                            <views:NavType Type="views:WifiScanPage" />
+                        </RadioButton.CommandParameter>
+                        <RadioButton.Tag>
+                            <TextBlock Text="WiFi Scanner" />
+                        </RadioButton.Tag>
+                    </RadioButton>
+
+                    <RadioButton Command="{Binding NavCommand}" Content="Keep Alive" GroupName="Nav">
+                        <RadioButton.CommandParameter>
+                            <views:NavType Type="views:KeepAliveListingPage" />
+                        </RadioButton.CommandParameter>
+                        <RadioButton.Tag>
+                            <TextBlock Text="Keep Alive" />
+                        </RadioButton.Tag>
+                    </RadioButton>
+
                     <RadioButton Command="{Binding NavCommand}" Content="Settings" GroupName="Nav">
                         <RadioButton.CommandParameter>
                             <views:NavType Type="views:SettingsPage" />

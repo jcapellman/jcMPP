@@ -23,5 +23,9 @@ namespace jcMPP.UWP.Views {
         private void BtnWifiScan_OnClick(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(WifiScanPage));
         }
+
+        private void BtnKeepAlive_OnClick(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(KeepAliveListingPage));
+        }
     }
 }

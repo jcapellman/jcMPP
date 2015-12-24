@@ -39,7 +39,7 @@
             <ProgressBar Visibility="{Binding ProgressBarRunning, Mode=TwoWay}" Style="{StaticResource MainProgressBar}" />
         </Grid>
 
-        <TextBlock Grid.Row="1" Margin="20,10,0,10" Text="WiFi Scan" Style="{StaticResource HeaderTextBlockStyle}" />
+        <TextBlock Grid.Row="1" Margin="20,10,0,10" Text="Keep Alive Items" Style="{StaticResource HeaderTextBlockStyle}" />
 
         <ListView Grid.Row="2" Margin="10,0,0,0" ItemsSource="{Binding KeepAliveListing}">
             <ListView.ItemTemplate>
@@ -80,4 +80,10 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Add Site" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </local:BasePage>

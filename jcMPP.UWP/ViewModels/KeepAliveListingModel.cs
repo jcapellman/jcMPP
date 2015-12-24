@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.KeepAlive;
 using jcMPP.PCL.PlatformAbstractions;
+using jcMPP.UWP.PlatformImplementations;
 
 namespace jcMPP.UWP.ViewModels {
     public class KeepAliveListingModel : BaseModel {
+        public KeepAliveListingModel() : base(new UWPFileIO()) { }
+
         public KeepAliveListingModel(BaseFileIO baseFileIO) : base(baseFileIO) { }
 
         private ObservableCollection<KeepAliveListingItem> _keepAliveListing;
@@ -18,9 +21,13 @@ namespace jcMPP.UWP.ViewModels {
         }  
 
         public async Task<bool> LoadListing() {
+            ShowRunning();
+
             var result = await _baseFileIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
 
-            KeepAliveListing = new ObservableCollection<KeepAliveListingItem>(result.Value);
+            KeepAliveListing = result.Value == null ? new ObservableCollection<KeepAliveListingItem>() : new ObservableCollection<KeepAliveListingItem>(result.Value);
+
+            HideRunning();
 
             return true;
         }
