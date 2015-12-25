@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 using jcMPP.UWP.PlatformImplementations;
@@ -15,15 +16,16 @@ namespace jcMPP.UWP.Views {
         }
 
         private void BtnCancelAdd_OnClick(object sender, RoutedEventArgs e) {
-            pNewSite.IsOpen = false;
+            cdAdddSite.Hide();
         }
 
-        private void btnAddSite_Click(object sender, RoutedEventArgs e) {
-            if (pNewSite.IsOpen) {
-                return;
-            }
+        private async void btnAddSite_Click(object sender, RoutedEventArgs e) {
+            await cdAdddSite.ShowAsync();
+        }
 
-            pNewSite.IsOpen = true;
+        private void btnConfirmAddSite_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
