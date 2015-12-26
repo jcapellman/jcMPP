@@ -103,6 +103,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KeepAliveDetailModel.cs" />
     <Compile Include="ViewModels\KeepAliveListingModel.cs" />
     <Compile Include="ViewModels\LandingPageModel.cs" />
     <Compile Include="ViewModels\SettingsModel.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
+    <Compile Include="Views\KeepAliveDetailPage.xaml.cs">
+      <DependentUpon>KeepAliveDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KeepAliveListingPage.xaml.cs">
       <DependentUpon>KeepAliveListingPage.xaml</DependentUpon>
     </Compile>
@@ -177,6 +181,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\KeepAliveDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\KeepAliveListingPage.xaml">
       <SubType>Designer</SubType>

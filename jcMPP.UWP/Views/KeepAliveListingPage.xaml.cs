@@ -1,7 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
+using jcMPP.PCL.Objects.KeepAlive;
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
@@ -29,6 +30,17 @@ namespace jcMPP.UWP.Views {
             var result = await viewModel<KeepAliveListingModel>().AddSiteFormSave();
 
             cdAdddSite.Hide();
+        }
+        
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var selectedItem = ((ListView) sender).SelectedItem;
+
+            if (selectedItem == null) {
+                return;
+            }
+
+            this.Frame.Navigate(typeof(KeepAliveDetailPage), ((KeepAliveListingItem)selectedItem).ID);
         }
     }
 }

@@ -48,6 +48,8 @@
     <Compile Include="Objects\Files\FileResponseItem.cs" />
     <Compile Include="Objects\Hashes\HashCrackRequestItem.cs" />
     <Compile Include="Objects\Hashes\HashCrackResponseItem.cs" />
+    <Compile Include="Objects\KeepAlive\KeepAliveHistoryListingItem.cs" />
+    <Compile Include="Objects\KeepAlive\KeepAliveItem.cs" />
     <Compile Include="Objects\KeepAlive\KeepAliveListingItem.cs" />
     <Compile Include="Objects\Ports\PortListingItem.cs" />
     <Compile Include="Objects\Ports\PortScanListingItem.cs" />
