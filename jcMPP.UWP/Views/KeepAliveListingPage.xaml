@@ -117,6 +117,9 @@
 
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="site address" Style="{StaticResource EntityLabel}" />
@@ -129,7 +132,10 @@
                     <ToggleSwitch Grid.Row="5"  IsOn="{Binding AddSite_Enable, Mode=TwoWay}" />
 
                     <TextBlock Grid.Row="6" Text="alert on failure" Style="{StaticResource EntityLabel}" />
-                    <ToggleSwitch Grid.Row="7" IsOn="{Binding AddSite_AlertOnFailure, Mode=TwoWay}" />
+                    <ToggleSwitch Grid.Row="7" IsOn="{Binding AddSite_EnableFailureAlert, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="8" Text="allowable failures before alert" Style="{StaticResource EntityLabel}" />
+                    <TextBox Grid.Row="9" IsEnabled="{Binding AddSite_EnableFailureAlert, Mode=TwoWay}" Text="{Binding AddSite_AllowableFailuresBeforeAlert, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,0,10" />
                 </Grid>
                 
                 <Grid Grid.Row="2" Margin="10,0,10,10">

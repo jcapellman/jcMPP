@@ -28,6 +28,13 @@ namespace jcMPP.UWP.ViewModels {
             set { _addSite_EnableFailureAlert = value; OnPropertyChanged(); }
         }
 
+        private string _addSite_AllowableFailuresBeforeAlert;
+
+        public string AddSite_AllowableFailuresBeforeAlert {
+            get { return _addSite_AllowableFailuresBeforeAlert; }
+            set { _addSite_AllowableFailuresBeforeAlert = value; OnPropertyChanged(); CheckAddSiteForm(); }
+        }
+
         private string _addSite_SiteAddress;
 
         public string AddSite_SiteAddress {
@@ -58,6 +65,8 @@ namespace jcMPP.UWP.ViewModels {
             AddSite_SiteAddress = string.Empty;
             AddSite_Interval = "60";
             AddSite_Enable = true;
+            AddSite_EnableFailureAlert = true;
+            AddSite_AllowableFailuresBeforeAlert = "2";
         }
 
         public async Task<bool> AddSiteFormSave() {
@@ -73,7 +82,8 @@ namespace jcMPP.UWP.ViewModels {
             KeepAliveListing.Add(listingItem);
 
             var mainItem = new KeepAliveItem(listingItem) {
-                AlertOnFailure = AddSite_EnableFailureAlert
+                AlertOnFailure = AddSite_EnableFailureAlert,
+
             };
 
             var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList());

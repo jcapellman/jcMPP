@@ -21,6 +21,9 @@ namespace jcMPP.PCL.Objects.KeepAlive {
         public bool AlertOnFailure { get; set; }
 
         [DataMember]
+        public string ConsectutiveFailuresAllowed { get; set; }
+
+        [DataMember]
         public List<KeepAliveHistoryListingItem> History { get; set; }
 
         public KeepAliveItem() { }
