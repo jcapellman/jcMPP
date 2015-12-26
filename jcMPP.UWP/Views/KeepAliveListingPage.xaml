@@ -6,12 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:jcMPP.UWP.ViewModels"
+    xmlns:converters="using:jcMPP.UWP.Converters"
     mc:Ignorable="d">
 
     <Page.DataContext>
         <viewModels:KeepAliveListingModel />
     </Page.DataContext>
 
+    <Page.Resources>
+        <converters:TimeStampToString x:Key="TimeStampToString" />
+    </Page.Resources>
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="../Assets/appBG.png" />
@@ -72,10 +77,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" FontSize="20" Margin="0,0,0,0" Text="last uptime" />
-                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding LastReport}" />
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding LastReport, Converter={StaticResource TimeStampToString}, ConverterParameter='({0})'}" />
                         </Grid>
 
-                        <CheckBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Top" IsChecked="{Binding IsEnabled}" IsEnabled="False" />
+                        <CheckBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0"  IsChecked="{Binding IsEnabled}" IsEnabled="False" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -109,6 +114,9 @@
 
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="site address" Style="{StaticResource EntityLabel}" />
@@ -119,6 +127,9 @@
 
                     <TextBlock Grid.Row="4" Text="enable initially" Style="{StaticResource EntityLabel}" />
                     <ToggleSwitch Grid.Row="5"  IsOn="{Binding AddSite_Enable, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="6" Text="alert on failure" Style="{StaticResource EntityLabel}" />
+                    <ToggleSwitch Grid.Row="7" IsOn="{Binding AddSite_AlertOnFailure, Mode=TwoWay}" />
                 </Grid>
                 
                 <Grid Grid.Row="2" Margin="10,0,10,10">

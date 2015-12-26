@@ -20,6 +20,14 @@ namespace jcMPP.UWP.ViewModels {
             set { _addSite_EnableAdd = value; OnPropertyChanged(); }
         }
 
+        private bool _addSite_EnableFailureAlert;
+
+        public bool AddSite_EnableFailureAlert {
+            get { return _addSite_EnableFailureAlert; }
+
+            set { _addSite_EnableFailureAlert = value; OnPropertyChanged(); }
+        }
+
         private string _addSite_SiteAddress;
 
         public string AddSite_SiteAddress {
@@ -55,14 +63,22 @@ namespace jcMPP.UWP.ViewModels {
         public async Task<bool> AddSiteFormSave() {
             ShowRunning();
 
-            KeepAliveListing.Add(new KeepAliveListingItem {
+            var listingItem = new KeepAliveListingItem {
                 Description = AddSite_SiteAddress,
                 ID = Guid.NewGuid(),
                 IsEnabled = AddSite_Enable,
                 LastReport = DateTime.MinValue
-            });
+            };
+
+            KeepAliveListing.Add(listingItem);
+
+            var mainItem = new KeepAliveItem(listingItem) {
+                AlertOnFailure = AddSite_EnableFailureAlert
+            };
 
             var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList());
+
+            await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, mainItem);
 
             HideRunning();
 
