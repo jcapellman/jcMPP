@@ -20,12 +20,15 @@ namespace jcMPP.UWP.Views {
         }
 
         private async void btnAddSite_Click(object sender, RoutedEventArgs e) {
+            viewModel<KeepAliveListingModel>().ClearAddSiteForm();
+
             await cdAdddSite.ShowAsync();
         }
 
-        private void btnConfirmAddSite_Click(object sender, RoutedEventArgs e)
-        {
-            
+        private async void btnConfirmAddSite_Click(object sender, RoutedEventArgs e) {
+            var result = await viewModel<KeepAliveListingModel>().AddSiteFormSave();
+
+            cdAdddSite.Hide();
         }
     }
 }

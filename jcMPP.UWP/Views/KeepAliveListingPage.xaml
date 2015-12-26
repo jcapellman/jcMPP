@@ -65,7 +65,7 @@
                             <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="24" Text="{Binding Description, Mode=OneTime}" />
                         </Grid>
 
-                        <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid Grid.Row="1" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
@@ -75,7 +75,7 @@
                             <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding LastReport}" />
                         </Grid>
 
-                        <CheckBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" IsChecked="{Binding IsEnabled}" IsEnabled="False" />
+                        <CheckBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Top" IsChecked="{Binding IsEnabled}" IsEnabled="False" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -94,11 +94,34 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Margin="20,10,0,10" Text="Add Keep Alive Site" Style="{StaticResource HeaderTextBlockStyle}" />
-                
+                <TextBlock Grid.Row="0" Margin="10,10,0,10" Text="Add Keep Alive Site" Style="{StaticResource HeaderTextBlockStyle}" />
+
                 <Grid Grid.Row="1" Margin="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="site address" Style="{StaticResource EntityLabel}" />
+                    <TextBox Grid.Row="1" Text="{Binding AddSite_SiteAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,0,10" />
+
+                    <TextBlock Grid.Row="2" Text="interval for request" Style="{StaticResource EntityLabel}" />
+                    <TextBox Grid.Row="3" Text="{Binding AddSite_Interval, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,0,10" />
+
+                    <TextBlock Grid.Row="4" Text="enable initially" Style="{StaticResource EntityLabel}" />
+                    <ToggleSwitch Grid.Row="5"  IsOn="{Binding AddSite_Enable, Mode=TwoWay}" />
+                </Grid>
+                
+                <Grid Grid.Row="2" Margin="10,0,10,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -106,7 +129,7 @@
                     
                     <Button Grid.Column="0" HorizontalAlignment="Left" Content="Cancel" Click="BtnCancelAdd_OnClick" />
 
-                    <Button Grid.Column="1" HorizontalAlignment="Right" Content="Add" Click="btnConfirmAddSite_Click" />
+                    <Button Grid.Column="1" HorizontalAlignment="Right" IsEnabled="{Binding AddSite_EnableAdd, Mode=TwoWay}" Content="Add" Click="btnConfirmAddSite_Click" />
                 </Grid>
             </Grid>
         </ContentDialog>
