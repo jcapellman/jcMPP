@@ -234,6 +234,10 @@
       <Project>{332bc16d-b48d-4236-b0ae-5e942c0a18fb}</Project>
       <Name>jcMPP.PCL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\jcMPP.UWP.BackgroundTask\jcMPP.UWP.BackgroundTask.csproj">
+      <Project>{e3f4d4e0-28e5-451f-9f2f-7a848d1a04fb}</Project>
+      <Name>jcMPP.UWP.BackgroundTask</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
