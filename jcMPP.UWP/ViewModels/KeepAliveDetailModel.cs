@@ -28,5 +28,15 @@ namespace jcMPP.UWP.ViewModels {
 
             return data.Value != null;
         }
+
+        public async Task<bool> SaveData() {
+            ShowRunning();
+
+            var data = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, Item);
+            
+            HideRunning();
+
+            return !data.HasError;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 using jcMPP.UWP.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -11,6 +12,10 @@ namespace jcMPP.UWP.Views {
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             await viewModel<KeepAliveDetailModel>().LoadData();
+        }
+
+        private async void btnSaveData_Click(object sender, RoutedEventArgs e) {
+            var result = await viewModel<KeepAliveDetailModel>().SaveData();
         }
     }
 }

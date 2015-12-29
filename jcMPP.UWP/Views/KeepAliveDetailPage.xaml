@@ -75,4 +75,10 @@
             <TextBox Grid.Row="9" IsEnabled="{Binding Item.AlertOnFailure, Mode=TwoWay}" Text="{Binding Item.ConsectutiveFailuresAllowed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,0,10" />
         </Grid>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Save" Label="Save" Click="btnSaveData_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </local:BasePage>
