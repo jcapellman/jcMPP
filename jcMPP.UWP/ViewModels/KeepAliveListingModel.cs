@@ -86,7 +86,7 @@ namespace jcMPP.UWP.ViewModels {
 
             };
 
-            var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList());
+            var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList(), objectGUID: listingItem.ID);
 
             await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, mainItem);
 

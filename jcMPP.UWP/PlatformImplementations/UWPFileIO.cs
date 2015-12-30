@@ -20,7 +20,7 @@ namespace jcMPP.UWP.PlatformImplementations {
             return await FileIO.ReadTextAsync(file);
         }
         
-        public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true) {
+        public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true, Guid? objectGUID = null) {
             var storageFolder = ApplicationData.Current.LocalFolder;
 
             var str = GetJSONStringFromT(obj);
@@ -32,20 +32,22 @@ namespace jcMPP.UWP.PlatformImplementations {
             } else {
                 data = GetBytesFromT(obj);
             }
-
-            using (var stream = await storageFolder.OpenStreamForWriteAsync(assetType.ToString(), CreationCollisionOption.ReplaceExisting)) {
+            
+            using (var stream = await storageFolder.OpenStreamForWriteAsync(GetFileName(assetType, objectGUID), CreationCollisionOption.ReplaceExisting)) {
                 stream.Write(data, 0, data.Length);
             }
 
             return new CTO<bool>(true);
         }
-
-        public override async Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true) {
+        
+        public override async Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true, Guid? objectGUID = null) {
             var appFolder = ApplicationData.Current.LocalFolder;
 
             var filesinFolder = await appFolder.GetFilesAsync();
 
-            var file = filesinFolder.FirstOrDefault(a => a.Name == assetType.ToString());
+            var fileName = GetFileName(assetType, objectGUID);
+
+            var file = filesinFolder.FirstOrDefault(a => a.Name == fileName);
 
             if (file == null) {
                 return new CTO<T>(default(T), $"{assetType} was not found");

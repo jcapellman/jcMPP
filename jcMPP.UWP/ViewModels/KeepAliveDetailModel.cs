@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.KeepAlive;
@@ -15,10 +16,10 @@ namespace jcMPP.UWP.ViewModels {
 
         public KeepAliveDetailModel() : base(new UWPFileIO()) { }
 
-        public async Task<bool> LoadData() {
+        public async Task<bool> LoadData(Guid objectGUID) {
             ShowRunning();
 
-            var data = await _baseFileIO.GetFile<KeepAliveItem>(ASSET_TYPES.KEEP_ALIVE_ITEM);
+            var data = await _baseFileIO.GetFile<KeepAliveItem>(ASSET_TYPES.KEEP_ALIVE_ITEM, objectGUID: objectGUID);
 
             if (!data.HasError) {
                 Item = data.Value;
@@ -32,7 +33,7 @@ namespace jcMPP.UWP.ViewModels {
         public async Task<bool> SaveData() {
             ShowRunning();
 
-            var data = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, Item);
+            var data = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, Item, objectGUID: Item.ID);
             
             HideRunning();
 
