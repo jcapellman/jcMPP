@@ -76,19 +76,20 @@ namespace jcMPP.UWP.ViewModels {
                 Description = AddSite_SiteAddress,
                 ID = Guid.NewGuid(),
                 IsEnabled = AddSite_Enable,
-                LastReport = DateTime.MinValue
+                LastReport = DateTime.MinValue,
             };
 
             KeepAliveListing.Add(listingItem);
 
             var mainItem = new KeepAliveItem(listingItem) {
                 AlertOnFailure = AddSite_EnableFailureAlert,
-
+                ConsectutiveFailuresAllowed = AddSite_AllowableFailuresBeforeAlert,
+                Interval = AddSite_Interval
             };
 
-            var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList(), objectGUID: listingItem.ID);
+            var result = await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, KeepAliveListing.ToList());
 
-            await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, mainItem);
+            await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, mainItem, objectGUID: listingItem.ID);
 
             HideRunning();
 
