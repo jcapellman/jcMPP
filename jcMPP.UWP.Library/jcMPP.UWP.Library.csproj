@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E3F4D4E0-28E5-451F-9F2F-7A848D1A04FB}</ProjectGuid>
-    <OutputType>winmdobj</OutputType>
+    <ProjectGuid>{4C99C340-4E91-4C89-9EB9-5A2AE36B68AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jcMPP.UWP.BackgroundTask</RootNamespace>
-    <AssemblyName>jcMPP.UWP.BackgroundTask</AssemblyName>
+    <RootNamespace>jcMPP.UWP.Library</RootNamespace>
+    <AssemblyName>jcMPP.UWP.Library</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -108,7 +108,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeepAliveBackgroundTask.cs" />
+    <Compile Include="PlatformImplementations\UWPFileIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,13 +116,12 @@
       <Project>{332bc16d-b48d-4236-b0ae-5e942c0a18fb}</Project>
       <Name>jcMPP.PCL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\jcMPP.UWP.Library\jcMPP.UWP.Library.csproj">
-      <Project>{4c99c340-4e91-4c89-9eb9-5a2ae36b68ac}</Project>
-      <Name>jcMPP.UWP.Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

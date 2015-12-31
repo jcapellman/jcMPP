@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using jcMPP.PCL.Objects.Ports;
-using jcMPP.UWP.PlatformImplementations;
+using jcMPP.UWP.Library.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {

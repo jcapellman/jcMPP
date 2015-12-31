@@ -4,7 +4,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
 using jcMPP.PCL.Enums;
-using jcMPP.UWP.PlatformImplementations;
+using jcMPP.UWP.Library.PlatformImplementations;
 
 namespace jcMPP.UWP.Views {
     public abstract class BasePage : Page {

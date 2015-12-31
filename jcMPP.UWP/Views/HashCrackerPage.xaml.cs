@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-using jcMPP.UWP.PlatformImplementations;
+using jcMPP.UWP.Library.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects.KeepAlive;
 using jcMPP.PCL.PlatformAbstractions;
-using jcMPP.UWP.PlatformImplementations;
+
+using jcMPP.UWP.Library.PlatformImplementations;
 
 namespace jcMPP.UWP.ViewModels {
     public class KeepAliveDetailModel : BaseModel {

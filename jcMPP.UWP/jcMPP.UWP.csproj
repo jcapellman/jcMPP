@@ -122,7 +122,6 @@
       <DependentUpon>PortScanPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Commands.cs" />
-    <Compile Include="PlatformImplementations\UWPFileIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\INavigatable.cs" />
     <Compile Include="Services\NavigationEventArgs.cs" />
@@ -237,6 +236,10 @@
     <ProjectReference Include="..\jcMPP.UWP.BackgroundTask\jcMPP.UWP.BackgroundTask.csproj">
       <Project>{e3f4d4e0-28e5-451f-9f2f-7a848d1a04fb}</Project>
       <Name>jcMPP.UWP.BackgroundTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jcMPP.UWP.Library\jcMPP.UWP.Library.csproj">
+      <Project>{4c99c340-4e91-4c89-9eb9-5a2ae36b68ac}</Project>
+      <Name>jcMPP.UWP.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
