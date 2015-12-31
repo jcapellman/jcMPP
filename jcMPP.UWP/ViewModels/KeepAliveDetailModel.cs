@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using jcMPP.PCL.Enums;
@@ -44,6 +45,22 @@ namespace jcMPP.UWP.ViewModels {
             ShowRunning();
 
             var result = await _baseFileIO.DeleteFile<KeepAliveItem>(ASSET_TYPES.KEEP_ALIVE_ITEM, Item.ID);
+
+            var keepAliveResult = await _baseFileIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
+
+            if (keepAliveResult.HasError) {
+                return false;
+            }
+
+            var index = keepAliveResult.Value.FindIndex(a => a.ID == Item.ID);
+
+            if (index < 0) {
+                return false;
+            }
+
+            keepAliveResult.Value.RemoveAt(index);
+
+            await _baseFileIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, keepAliveResult.Value);
 
             HideRunning();
 
