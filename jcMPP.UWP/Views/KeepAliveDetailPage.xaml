@@ -78,6 +78,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton Icon="Delete" Label="Delete" Click="btnDelete_Click" />
             <AppBarButton Icon="Save" Label="Save" Click="btnSaveData_Click" />
         </CommandBar>
     </Page.BottomAppBar>

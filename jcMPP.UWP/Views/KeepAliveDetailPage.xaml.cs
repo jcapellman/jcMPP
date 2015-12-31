@@ -18,5 +18,17 @@ namespace jcMPP.UWP.Views {
         private async void btnSaveData_Click(object sender, RoutedEventArgs e) {
             var result = await viewModel<KeepAliveDetailModel>().SaveData();
         }
+
+        private  async void btnDelete_Click(object sender, RoutedEventArgs e) {
+            var result = await ShowDialogPrompt("Are you sure you want to delete this?");
+
+            if (!result) {
+                return;
+            }
+
+            result = await viewModel<KeepAliveDetailModel>().Delete();
+
+            this.Frame.GoBack();
+        }
     }
 }

@@ -3,9 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.DataProtection;
 using Windows.Storage;
+
 using jcMPP.PCL.Enums;
 using jcMPP.PCL.Objects;
 using jcMPP.PCL.PlatformAbstractions;
@@ -19,7 +21,17 @@ namespace jcMPP.UWP.PlatformImplementations {
 
             return await FileIO.ReadTextAsync(file);
         }
-        
+
+        public override async Task<CTO<bool>> DeleteFile<T>(ASSET_TYPES assetType, Guid? objectGUID = null) {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+
+            var file = await storageFolder.GetFileAsync(GetFileName(assetType, objectGUID));
+
+            await file.DeleteAsync();
+
+            return new CTO<bool>(true);
+        }
+
         public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true, Guid? objectGUID = null) {
             var storageFolder = ApplicationData.Current.LocalFolder;
 

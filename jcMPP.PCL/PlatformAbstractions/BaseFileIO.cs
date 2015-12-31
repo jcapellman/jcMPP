@@ -13,6 +13,8 @@ namespace jcMPP.PCL.PlatformAbstractions {
             return fileList.HasError ? new List<int>() : fileList.Value;
         }
 
+        public abstract Task<CTO<bool>> DeleteFile<T>(ASSET_TYPES assetType, Guid? objectGUID = null);
+
         public abstract Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true, Guid? objectGUID = null);
 
         public abstract Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true, Guid? objectGUID = null);

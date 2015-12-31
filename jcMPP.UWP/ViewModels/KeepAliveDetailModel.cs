@@ -39,5 +39,15 @@ namespace jcMPP.UWP.ViewModels {
 
             return !data.HasError;
         }
+
+        public async Task<bool> Delete() {
+            ShowRunning();
+
+            var result = await _baseFileIO.DeleteFile<KeepAliveItem>(ASSET_TYPES.KEEP_ALIVE_ITEM, Item.ID);
+
+            HideRunning();
+
+            return true;
+        }
     }
 }
