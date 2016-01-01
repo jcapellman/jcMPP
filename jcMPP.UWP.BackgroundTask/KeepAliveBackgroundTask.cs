@@ -31,7 +31,7 @@ namespace jcMPP.UWP.BackgroundTask {
             }
 
             var httpClient = new HttpClient();
-
+            
             foreach (var item in keepAliveResult.Value.Where(a => a.IsEnabled)) {
                 var fullItem = await baseIO.GetFile<KeepAliveItem>(ASSET_TYPES.KEEP_ALIVE_ITEM, objectGUID: item.ID);
 
@@ -39,14 +39,37 @@ namespace jcMPP.UWP.BackgroundTask {
                     continue;
                 }
 
+                var historyItem = new KeepAliveHistoryListingItem {
+                    Timestamp = DateTime.Now,
+                    Success = true
+                };
+                
                 var httpResponse = await httpClient.GetStringAsync(new Uri(fullItem.Value.SiteAddress));
 
+                if (fullItem.Value.History == null) {
+                    fullItem.Value.History = new List<KeepAliveHistoryListingItem>();
+                }
+                
                 if (!string.IsNullOrEmpty(httpResponse)) {
                     continue;
                 }
 
+                historyItem.Success = false;
+
+                fullItem.Value.History.Add(historyItem);
+
+                await baseIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_ITEM, fullItem.Value, objectGUID: fullItem.Value.ID);
+
+                item.LastReport = historyItem.Timestamp;
+
+                var index = keepAliveResult.Value.IndexOf(item);
+
+                keepAliveResult.Value[index] = item;
+                
                 displayToast($"{fullItem.Value.SiteAddress} is down");
             }
+
+            await baseIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, keepAliveResult.Value);
         }
     }
 }
