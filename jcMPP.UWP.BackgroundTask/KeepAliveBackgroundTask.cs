@@ -65,8 +65,10 @@ namespace jcMPP.UWP.BackgroundTask {
                 var index = keepAliveResult.Value.IndexOf(item);
 
                 keepAliveResult.Value[index] = item;
-                
-                displayToast($"{fullItem.Value.SiteAddress} is down");
+
+                if (fullItem.Value.AlertOnFailure) {
+                    displayToast($"{fullItem.Value.SiteAddress} is down");
+                }
             }
 
             await baseIO.WriteFile(ASSET_TYPES.KEEP_ALIVE_LISTING, keepAliveResult.Value);
