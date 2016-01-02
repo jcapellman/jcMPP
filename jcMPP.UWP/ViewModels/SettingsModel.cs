@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-
+using jcMPP.PCL.Objects;
 using jcMPP.PCL.PlatformAbstractions;
 
 namespace jcMPP.UWP.ViewModels {
@@ -8,10 +8,8 @@ namespace jcMPP.UWP.ViewModels {
             HideRunning();
         }
 
-        public async Task<bool> ClearFiles() {
-            var result = await _baseFileIO.ClearFiles();
-
-            return !result.HasError;
+        public async Task<CTO<bool>> ClearFiles() {
+            return await _baseFileIO.ClearFiles();
         }
     }
 }

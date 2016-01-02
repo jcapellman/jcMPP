@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
+using jcMPP.PCL.Common;
 using jcMPP.PCL.Enums;
+using jcMPP.PCL.Objects;
 using jcMPP.UWP.Library.PlatformImplementations;
 
 namespace jcMPP.UWP.Views {
@@ -20,6 +22,14 @@ namespace jcMPP.UWP.Views {
 
         public async void ShowDialog(string content) {
             var dialog = new MessageDialog(content);
+            await dialog.ShowAsync();
+        }
+
+        public async void ShowErrorDialog<T>(CTO<T> errorObject) {
+            var dialog = new MessageDialog(errorObject.Exception) {
+                Title = $"error in {Constants.APP_NAME}"
+            };
+
             await dialog.ShowAsync();
         }
 

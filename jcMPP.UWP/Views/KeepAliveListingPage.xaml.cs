@@ -10,11 +10,15 @@ using jcMPP.UWP.ViewModels;
 namespace jcMPP.UWP.Views {
     public sealed partial class KeepAliveListingPage : BasePage {
         public KeepAliveListingPage() : base(typeof(KeepAliveListingModel), new UWPFileIO()) {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             var result = await viewModel<KeepAliveListingModel>().LoadListing();
+
+            if (result.HasError) {
+                ShowErrorDialog(result);
+            } 
         }
 
         private void BtnCancelAdd_OnClick(object sender, RoutedEventArgs e) {

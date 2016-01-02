@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using jcMPP.PCL.Enums;
+using jcMPP.PCL.Objects;
 using jcMPP.PCL.Objects.KeepAlive;
 using jcMPP.PCL.PlatformAbstractions;
 
@@ -15,7 +16,8 @@ namespace jcMPP.UWP.ViewModels {
         #region MVVM Fields
         private bool _addSite_EnableAdd;
 
-        public bool AddSite_EnableAdd {
+        public bool AddSite_EnableAdd
+        {
             get { return _addSite_EnableAdd; }
 
             set { _addSite_EnableAdd = value; OnPropertyChanged(); }
@@ -23,7 +25,8 @@ namespace jcMPP.UWP.ViewModels {
 
         private bool _addSite_EnableFailureAlert;
 
-        public bool AddSite_EnableFailureAlert {
+        public bool AddSite_EnableFailureAlert
+        {
             get { return _addSite_EnableFailureAlert; }
 
             set { _addSite_EnableFailureAlert = value; OnPropertyChanged(); }
@@ -31,28 +34,32 @@ namespace jcMPP.UWP.ViewModels {
 
         private string _addSite_AllowableFailuresBeforeAlert;
 
-        public string AddSite_AllowableFailuresBeforeAlert {
+        public string AddSite_AllowableFailuresBeforeAlert
+        {
             get { return _addSite_AllowableFailuresBeforeAlert; }
             set { _addSite_AllowableFailuresBeforeAlert = value; OnPropertyChanged(); CheckAddSiteForm(); }
         }
 
         private string _addSite_SiteAddress;
 
-        public string AddSite_SiteAddress {
-            get { return _addSite_SiteAddress; } 
+        public string AddSite_SiteAddress
+        {
+            get { return _addSite_SiteAddress; }
             set { _addSite_SiteAddress = value; OnPropertyChanged(); CheckAddSiteForm(); }
         }
 
         private string _addSite_Interval;
 
-        public string AddSite_Interval {
+        public string AddSite_Interval
+        {
             get { return _addSite_Interval; }
             set { _addSite_Interval = value; OnPropertyChanged(); CheckAddSiteForm(); }
         }
 
         private bool _addSite_Enable;
 
-        public bool AddSite_Enable {
+        public bool AddSite_Enable
+        {
             get { return _addSite_Enable; }
             set { _addSite_Enable = value; OnPropertyChanged(); }
         }
@@ -106,18 +113,28 @@ namespace jcMPP.UWP.ViewModels {
         public ObservableCollection<KeepAliveListingItem> KeepAliveListing {
             get { return _keepAliveListing; }
             set { _keepAliveListing = value; OnPropertyChanged(); }
-        }  
+        }
 
-        public async Task<bool> LoadListing() {
-            ShowRunning();
+        public async Task<CTO<bool>> LoadListing() {
+            try {
+                ShowRunning();
 
-            var result = await _baseFileIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
+                var result = await _baseFileIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
 
-            KeepAliveListing = result.Value == null ? new ObservableCollection<KeepAliveListingItem>() : new ObservableCollection<KeepAliveListingItem>(result.Value);
+                if (result.HasError) {
+                    throw new Exception(result.Exception);
+                }
 
-            HideRunning();
+                KeepAliveListing = result.Value == null
+                    ? new ObservableCollection<KeepAliveListingItem>()
+                    : new ObservableCollection<KeepAliveListingItem>(result.Value);
 
-            return true;
+                return new CTO<bool>(true);
+            } catch (Exception ex) {
+                return new CTO<bool>(false, ex);
+            } finally {
+                HideRunning();
+            }
         }
     }
 }
