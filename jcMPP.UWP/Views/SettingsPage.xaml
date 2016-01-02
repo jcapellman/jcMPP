@@ -5,6 +5,7 @@
     xmlns:local="using:jcMPP.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:jcMPP.UWP.ViewModels"
     mc:Ignorable="d">
 
     <Grid>
@@ -15,9 +16,9 @@
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Grid.Resources>
-        
+
         <Grid.Background>
-            <SolidColorBrush Color="Black" Opacity="0.5" />
+            <ImageBrush ImageSource="../Assets/appBG.png" />
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -31,16 +32,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="settings" Foreground="White" FontSize="24" Margin="10,10,0,0" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="settings" Margin="20,10,0,10" Style="{StaticResource HeaderTextBlockStyle}" />
 
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Button Grid.Row="0" x:Name="btnCheckForUpdates" Margin="0,0,0,20" HorizontalAlignment="Stretch" Content="check for definition updates" Click="BtnCheckForUpdates_OnClick" />
             <Button Grid.Row="1" x:Name="btnClearLocalDefinitions" HorizontalAlignment="Stretch" Content="clear local definitions" Click="btnClearFiles_OnClick" />
+            
+            <ToggleSwitch Grid.Row="2" Margin="0,40,0,0" IsOn="{Binding Setting_EnableRoaming, Mode=TwoWay}" Header="Enable Roaming Data" />
         </Grid>
 
         <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnSave" HorizontalAlignment="Right" Content="save" Grid.Column="1" Margin="0,0,10,10" />

@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 using jcMPP.UWP.Library.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
@@ -8,6 +9,10 @@ namespace jcMPP.UWP.Views {
 
         public SettingsPage() : base(typeof(SettingsModel), new UWPFileIO(App.AppSetting)) {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            viewModel<SettingsModel>().LoadData();
         }
 
         private async void btnClearFiles_OnClick(object sender, RoutedEventArgs e) {

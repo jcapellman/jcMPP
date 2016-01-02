@@ -36,3 +36,7 @@
 /jcMPP.UWP.Library/obj/Debug
 /jcMPP.UWP/obj/ARM/Debug
 /jcMPP.UWP.BackgroundTask/bin/ARM/Debug
+/jcMPP.UWP.BackgroundTask/obj/ARM/Debug
+/jcMPP.UWP.BackgroundTask/project.lock.json
+/jcMPP.UWP.Library/bin/ARM/Debug
+/jcMPP.UWP.Library/obj/ARM/Debug
