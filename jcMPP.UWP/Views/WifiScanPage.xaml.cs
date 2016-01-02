@@ -8,7 +8,7 @@ using jcMPP.UWP.ViewModels;
 namespace jcMPP.UWP.Views {
 
     public sealed partial class WifiScanPage {
-        public WifiScanPage() : base(typeof(WifiScanModel), new UWPFileIO()) {
+        public WifiScanPage() : base(typeof(WifiScanModel), new UWPFileIO(App.AppSetting)) {
             this.InitializeComponent();
         }
 

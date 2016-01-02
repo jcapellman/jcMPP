@@ -38,6 +38,7 @@
     <Compile Include="Enums\AssetTypes.cs" />
     <Compile Include="Enums\DefinitionResultTypes.cs" />
     <Compile Include="Enums\HashTypes.cs" />
+    <Compile Include="Enums\SettingKeys.cs" />
     <Compile Include="Enums\WebAPIResponses.cs" />
     <Compile Include="Enums\WiFiScanResultTypes.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Objects\Ports\PortScanListingItem.cs" />
     <Compile Include="PlatformAbstractions\BaseFileIO.cs" />
     <Compile Include="PlatformAbstractions\BasePA.cs" />
+    <Compile Include="PlatformAbstractions\BaseSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,8 +3,12 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
+using jcMPP.UWP.Library.PlatformImplementations;
+
 namespace jcMPP.UWP {
     sealed partial class App : Common.BootStrapper {
+        public static UWPSetting AppSetting = new UWPSetting();
+
         public App() {
             this.InitializeComponent();
         }

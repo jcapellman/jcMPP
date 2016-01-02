@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlatformImplementations\UWPFileIO.cs" />
+    <Compile Include="PlatformImplementations\UWPSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

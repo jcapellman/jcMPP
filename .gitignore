@@ -34,3 +34,5 @@
 /jcMPP.UWP.BackgroundTask/obj/Debug
 /jcMPP.UWP.Library/bin/Debug
 /jcMPP.UWP.Library/obj/Debug
+/jcMPP.UWP/obj/ARM/Debug
+/jcMPP.UWP.BackgroundTask/bin/ARM/Debug

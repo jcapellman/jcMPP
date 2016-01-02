@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -9,7 +10,7 @@ using jcMPP.UWP.ViewModels;
 
 namespace jcMPP.UWP.Views {
     public sealed partial class KeepAliveListingPage : BasePage {
-        public KeepAliveListingPage() : base(typeof(KeepAliveListingModel), new UWPFileIO()) {
+        public KeepAliveListingPage() : base(typeof(KeepAliveListingModel), new UWPFileIO(App.AppSetting)) {
             InitializeComponent();
         }
 

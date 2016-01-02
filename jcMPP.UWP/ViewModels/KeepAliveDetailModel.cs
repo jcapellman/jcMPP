@@ -16,7 +16,8 @@ namespace jcMPP.UWP.ViewModels {
 
         public KeepAliveDetailModel(BaseFileIO baseFileIO) : base(baseFileIO) { }
 
-        public KeepAliveDetailModel() : base(new UWPFileIO()) { }
+        public KeepAliveDetailModel()
+            : base(new UWPFileIO(App.AppSetting)) { }
 
         public async Task<bool> LoadData(Guid objectGUID) {
             ShowRunning();

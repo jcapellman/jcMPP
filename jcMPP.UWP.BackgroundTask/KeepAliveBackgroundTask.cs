@@ -22,7 +22,7 @@ namespace jcMPP.UWP.BackgroundTask {
         }
 
         public async void Run(IBackgroundTaskInstance taskInstance) {
-            var baseIO = new UWPFileIO();
+            var baseIO = new UWPFileIO(null);
 
             var keepAliveResult = await baseIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
 

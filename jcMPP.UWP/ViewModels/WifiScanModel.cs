@@ -32,7 +32,7 @@ namespace jcMPP.UWP.ViewModels {
 
         public WifiScanModel(BaseFileIO baseFileIO) : base(baseFileIO) { }
 
-        public WifiScanModel() : base(new UWPFileIO()) { }
+        public WifiScanModel() : base(new UWPFileIO(App.AppSetting)) { }
 
         public async Task<WiFiScanResultTypes> LoadData() {
             Enabled_btnRefresh = false;

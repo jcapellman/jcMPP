@@ -14,7 +14,7 @@ using jcMPP.UWP.ViewModels;
 namespace jcMPP.UWP.Views {
     public sealed partial class PortScanPage {
 
-        public PortScanPage() : base(typeof(PortScanModel), new UWPFileIO()) {
+        public PortScanPage() : base(typeof(PortScanModel), new UWPFileIO(App.AppSetting)) {
             this.InitializeComponent();
         }
 

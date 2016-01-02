@@ -6,7 +6,7 @@ using jcMPP.UWP.ViewModels;
 namespace jcMPP.UWP.Views {
     public sealed partial class SettingsPage {
 
-        public SettingsPage() : base(typeof(SettingsModel), new UWPFileIO()) {
+        public SettingsPage() : base(typeof(SettingsModel), new UWPFileIO(App.AppSetting)) {
             InitializeComponent();
         }
 

@@ -104,7 +104,7 @@ namespace jcMPP.UWP.ViewModels {
             return result.Value;
         }
 
-        public KeepAliveListingModel() : base(new UWPFileIO()) { }
+        public KeepAliveListingModel() : base(new UWPFileIO(App.AppSetting)) { }
 
         public KeepAliveListingModel(BaseFileIO baseFileIO) : base(baseFileIO) { }
 

@@ -14,6 +14,14 @@ using jcMPP.PCL.PlatformAbstractions;
 
 namespace jcMPP.UWP.Library.PlatformImplementations {
     public class UWPFileIO : BaseFileIO {
+        private readonly StorageFolder _currentFolder;
+
+        public UWPFileIO(BaseSetting appSetting) {
+            _currentFolder = (appSetting.GetValue<bool>(SettingKeys.ENABLE_ROAMING_SETTINGS)
+                ? ApplicationData.Current.RoamingFolder
+                : ApplicationData.Current.LocalFolder);
+        }
+
         private async Task<string> GetLocalFile(string path) {
             var folder = await StorageFolder.GetFolderFromPathAsync(path);
 
@@ -24,9 +32,7 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
 
         public override async Task<CTO<bool>> DeleteFile<T>(ASSET_TYPES assetType, Guid? objectGUID = null) {
             try {
-                var storageFolder = ApplicationData.Current.LocalFolder;
-
-                var file = await storageFolder.GetFileAsync(GetFileName(assetType, objectGUID));
+                var file = await _currentFolder.GetFileAsync(GetFileName(assetType, objectGUID));
 
                 await file.DeleteAsync();
 
@@ -38,8 +44,6 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
 
         public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true, Guid? objectGUID = null) {
             try {
-                var storageFolder = ApplicationData.Current.LocalFolder;
-
                 var str = GetJSONStringFromT(obj);
 
                 byte[] data;
@@ -56,7 +60,7 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
                 using (
                     var stream =
                         await
-                            storageFolder.OpenStreamForWriteAsync(GetFileName(assetType, objectGUID),
+                            _currentFolder.OpenStreamForWriteAsync(GetFileName(assetType, objectGUID),
                                 CreationCollisionOption.ReplaceExisting))
                 {
                     stream.Write(data, 0, data.Length);
@@ -70,9 +74,7 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
         
         public override async Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true, Guid? objectGUID = null) {
             try {
-                var appFolder = ApplicationData.Current.LocalFolder;
-
-                var filesinFolder = await appFolder.GetFilesAsync();
+                var filesinFolder = await _currentFolder.GetFilesAsync();
 
                 var fileName = GetFileName(assetType, objectGUID);
 
@@ -97,9 +99,7 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
 
         public async override Task<CTO<bool>> ClearFiles() {
             try {
-                var storageFolder = ApplicationData.Current.LocalFolder;
-
-                await storageFolder.DeleteAsync();
+                await _currentFolder.DeleteAsync();
 
                 return new CTO<bool>(true);
             } catch (Exception ex) {
