@@ -10,7 +10,7 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
         private static ApplicationDataContainer CurrentSettingsContainer => ApplicationData.Current.RoamingSettings;
 
         public override T GetValue<T>(SettingKeys key) {
-            var objectValue = CurrentSettingsContainer.Values[key.ToString()];
+            var objectValue = !CurrentSettingsContainer.Values.ContainsKey(key.ToString()) ? GetDefaultValue<T>(key) : CurrentSettingsContainer.Values[key.ToString()];
 
             return (T)Convert.ChangeType(objectValue, typeof (T));
         }
