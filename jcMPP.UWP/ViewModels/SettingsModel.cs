@@ -9,7 +9,9 @@ namespace jcMPP.UWP.ViewModels {
         }
 
         public async Task<bool> ClearFiles() {
-            return await _baseFileIO.ClearFiles();
+            var result = await _baseFileIO.ClearFiles();
+
+            return !result.HasError;
         }
     }
 }

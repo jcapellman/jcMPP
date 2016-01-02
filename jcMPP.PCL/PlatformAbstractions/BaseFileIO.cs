@@ -19,10 +19,9 @@ namespace jcMPP.PCL.PlatformAbstractions {
 
         public abstract Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true, Guid? objectGUID = null);
 
-        public abstract Task<bool> ClearFiles();
+        public abstract Task<CTO<bool>> ClearFiles();
 
-        protected string GetFileName(ASSET_TYPES assetType, Guid? objectGUID = null)
-        {
+        protected string GetFileName(ASSET_TYPES assetType, Guid? objectGUID = null) {
             return (objectGUID.HasValue ? $"{assetType}_{objectGUID.Value}" : assetType.ToString());
         }
     }

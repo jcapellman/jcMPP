@@ -23,64 +23,88 @@ namespace jcMPP.UWP.Library.PlatformImplementations {
         }
 
         public override async Task<CTO<bool>> DeleteFile<T>(ASSET_TYPES assetType, Guid? objectGUID = null) {
-            var storageFolder = ApplicationData.Current.LocalFolder;
+            try {
+                var storageFolder = ApplicationData.Current.LocalFolder;
 
-            var file = await storageFolder.GetFileAsync(GetFileName(assetType, objectGUID));
+                var file = await storageFolder.GetFileAsync(GetFileName(assetType, objectGUID));
 
-            await file.DeleteAsync();
+                await file.DeleteAsync();
 
-            return new CTO<bool>(true);
+                return new CTO<bool>(true);
+            } catch (Exception ex) {
+                return new CTO<bool>(false, ex);
+            }
         }
 
         public override async Task<CTO<bool>> WriteFile<T>(ASSET_TYPES assetType, T obj, bool encryptFile = true, Guid? objectGUID = null) {
-            var storageFolder = ApplicationData.Current.LocalFolder;
+            try {
+                var storageFolder = ApplicationData.Current.LocalFolder;
 
-            var str = GetJSONStringFromT(obj);
+                var str = GetJSONStringFromT(obj);
 
-            byte[] data;
+                byte[] data;
 
-            if (encryptFile) {
-                data = await encryptData(str);
-            } else {
-                data = GetBytesFromT(obj);
+                if (encryptFile)
+                {
+                    data = await encryptData(str);
+                }
+                else
+                {
+                    data = GetBytesFromT(obj);
+                }
+
+                using (
+                    var stream =
+                        await
+                            storageFolder.OpenStreamForWriteAsync(GetFileName(assetType, objectGUID),
+                                CreationCollisionOption.ReplaceExisting))
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                return new CTO<bool>(true);
+            } catch (Exception ex) {
+                return new CTO<bool>(false, ex);
             }
-            
-            using (var stream = await storageFolder.OpenStreamForWriteAsync(GetFileName(assetType, objectGUID), CreationCollisionOption.ReplaceExisting)) {
-                stream.Write(data, 0, data.Length);
-            }
-
-            return new CTO<bool>(true);
         }
         
         public override async Task<CTO<T>> GetFile<T>(ASSET_TYPES assetType, bool encrypted = true, Guid? objectGUID = null) {
-            var appFolder = ApplicationData.Current.LocalFolder;
+            try {
+                var appFolder = ApplicationData.Current.LocalFolder;
 
-            var filesinFolder = await appFolder.GetFilesAsync();
+                var filesinFolder = await appFolder.GetFilesAsync();
 
-            var fileName = GetFileName(assetType, objectGUID);
+                var fileName = GetFileName(assetType, objectGUID);
 
-            var file = filesinFolder.FirstOrDefault(a => a.Name == fileName);
+                var file = filesinFolder.FirstOrDefault(a => a.Name == fileName);
 
-            if (file == null) {
-                return new CTO<T>(default(T), $"{assetType} was not found");
+                if (file == null) {
+                    return new CTO<T>(default(T), $"{assetType} was not found");
+                }
+
+                var buffer = await FileIO.ReadBufferAsync(file);
+
+                if (encrypted) {
+                    var decrypted = await decryptData(buffer.ToArray());
+                    return new CTO<T>(GetObjectFromJSONString<T>(decrypted));
+                }
+
+                return new CTO<T>(GetObjectFromBytes<T>(buffer.ToArray()));
+            } catch (Exception ex) {
+                return new CTO<T>(default(T), ex);
             }
-
-            var buffer = await FileIO.ReadBufferAsync(file);
-
-            if (encrypted) {
-                var decrypted = await decryptData(buffer.ToArray());
-                return new CTO<T>(GetObjectFromJSONString<T>(decrypted));
-            }
-
-            return new CTO<T>(GetObjectFromBytes<T>(buffer.ToArray()));
         }
 
-        public async override Task<bool> ClearFiles() {
-            var storageFolder = ApplicationData.Current.LocalFolder;
+        public async override Task<CTO<bool>> ClearFiles() {
+            try {
+                var storageFolder = ApplicationData.Current.LocalFolder;
 
-            await storageFolder.DeleteAsync();
+                await storageFolder.DeleteAsync();
 
-            return true;
+                return new CTO<bool>(true);
+            } catch (Exception ex) {
+                return new CTO<bool>(false, ex);
+            }
         }
 
         private async Task<byte[]> encryptData(string unencryptedData) {
