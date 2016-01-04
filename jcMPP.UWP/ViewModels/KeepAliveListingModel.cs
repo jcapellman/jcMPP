@@ -121,10 +121,6 @@ namespace jcMPP.UWP.ViewModels {
 
                 var result = await _baseFileIO.GetFile<List<KeepAliveListingItem>>(ASSET_TYPES.KEEP_ALIVE_LISTING);
 
-                if (result.HasError) {
-                    throw new Exception(result.Exception);
-                }
-
                 KeepAliveListing = result.Value == null
                     ? new ObservableCollection<KeepAliveListingItem>()
                     : new ObservableCollection<KeepAliveListingItem>(result.Value);
