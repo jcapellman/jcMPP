@@ -98,6 +98,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TileButton.xaml.cs">
+      <DependentUpon>TileButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\NetworkAuthenticationTypeToString.cs" />
     <Compile Include="Converters\SignalBarsByteToIcon.cs" />
     <Compile Include="Converters\TimeStampToString.cs" />
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\TileButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

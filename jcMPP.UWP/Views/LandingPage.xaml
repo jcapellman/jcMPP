@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:jcMPP.UWP.Controls"
     mc:Ignorable="d">
 
     <VariableSizedWrapGrid MaximumRowsOrColumns="2">
@@ -19,17 +20,7 @@
             </ResourceDictionary>
         </VariableSizedWrapGrid.Resources>
 
-        <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnPortScan_OnClick" x:Name="btnPortScan">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
-                <Image Grid.Row="0" MaxWidth="256" MinWidth="64" Source="/Assets/Icons/scan.png" />
-                <TextBlock Grid.Row="1" Text="port scan" Style="{StaticResource LandingPage_ButtonText}" />
-            </Grid>
-        </Button>
+        <controls:TileButton Caption="port scan" Icon="/Assets/Icons/scan.png" x:Name="btnPortScan" Tapped="BtnPortScan_OnClick" />
 
         <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnHash_OnClick" x:Name="btnHash">
             <Grid>
@@ -56,15 +47,15 @@
         </Button>
 
         <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnKeepAlive_OnClick" x:Name="btnKeepAlive">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Source="/Assets/Icons/keepalive.png" />
-            <TextBlock Grid.Row="1" Text="keep alive scan" Style="{StaticResource LandingPage_ButtonText}" />
-        </Grid>
+                <Image Grid.Row="0" Source="/Assets/Icons/keepalive.png" />
+                <TextBlock Grid.Row="1" Text="keep alive scan" Style="{StaticResource LandingPage_ButtonText}" />
+            </Grid>
         </Button>
     
         <Button Background="Transparent" MaxWidth="256" MinWidth="64" Click="BtnSettings_OnClick" x:Name="btnSettings">
