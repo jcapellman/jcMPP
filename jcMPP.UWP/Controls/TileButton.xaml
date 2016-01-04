@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl x:Name="userControl"
     x:Class="jcMPP.UWP.Controls.TileButton"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -16,7 +16,7 @@
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Grid.Resources>
-        
+
         <Button Background="Transparent" MaxWidth="256" MinWidth="64">
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,8 +24,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" MaxWidth="256" MinWidth="64" Source="{Binding Icon}" x:Name="imgMain" />
-                <TextBlock Grid.Row="1" Text="{Binding Caption}" Style="{StaticResource LandingPage_ButtonText}" />
+                <Image Grid.Row="0" MaxWidth="256" MinWidth="64" Source="{Binding Icon, ElementName=userControl}" />
+                <TextBlock Grid.Row="1" Style="{StaticResource LandingPage_ButtonText}" Text="{Binding Caption, ElementName=userControl}" />
             </Grid>
         </Button>
     </Grid>

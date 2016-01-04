@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace jcMPP.UWP.Controls {
     public sealed partial class TileButton : UserControl {
@@ -21,22 +9,20 @@ namespace jcMPP.UWP.Controls {
             this.InitializeComponent();
         }
 
-        private string _caption;
+        public string Caption {
+            get { return (string)GetValue(CaptionProperty); }
 
-        protected string Caption
-        {
-            get { return _caption; }
-
-            set { _caption = value; }
+            set { SetValue(CaptionProperty, value); }
         }
 
-        private Uri _icon;
+        public static readonly DependencyProperty CaptionProperty = DependencyProperty.Register("Caption", typeof(string), typeof(TileButton), null);
 
-        protected Uri Icon
-        {
-            get { return _icon; }
+        public Uri Icon {
+            get { return (Uri)GetValue(IconProperty); }
 
-            set { _icon = value; }
+            set { SetValue(IconProperty, value); }
         }
+
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(Uri), typeof(TileButton), null);
     }
 }
