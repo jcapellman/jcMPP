@@ -7,27 +7,35 @@
     xmlns:controls="using:jcMPP.UWP.Controls"
     mc:Ignorable="d">
 
-    <VariableSizedWrapGrid MaximumRowsOrColumns="2">
-        <VariableSizedWrapGrid.Background>
+    <RelativePanel>
+        <RelativePanel.Background>
             <ImageBrush ImageSource="../Assets/appBG.png" />
-        </VariableSizedWrapGrid.Background>
-        
-        <VariableSizedWrapGrid.Resources>
+        </RelativePanel.Background>
+
+        <RelativePanel.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="../Styles/AppStyles.xaml"/>
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
-        </VariableSizedWrapGrid.Resources>
+        </RelativePanel.Resources>
 
-        <controls:TileButton Caption="port scan" Icon="/Assets/Icons/scan.png" Tapped="BtnPortScan_OnClick" />
+        <ListView RelativePanel.AlignTopWithPanel="True">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:TileView Columns="0" MaxItemWidth="256" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
 
-        <controls:TileButton Caption="hash" Icon="/Assets/Icons/hash.png" Tapped="BtnHash_OnClick" />
+            <controls:TileButton Caption="port scan" Icon="/Assets/Icons/scan.png" Tapped="BtnPortScan_OnClick" />
 
-        <controls:TileButton Caption="wifi scan" Icon="/Assets/Icons/wifiscan.png" Tapped="BtnWifiScan_OnClick" />
+            <controls:TileButton Caption="hash" Icon="/Assets/Icons/hash.png" Tapped="BtnHash_OnClick" />
 
-        <controls:TileButton Caption="keep alive scan" Icon="/Assets/Icons/keepalive.png" Tapped="BtnKeepAlive_OnClick" />
+            <controls:TileButton Caption="wifi scan" Icon="/Assets/Icons/wifiscan.png" Tapped="BtnWifiScan_OnClick" />
 
-        <controls:TileButton Caption="settings" Icon="/Assets/Icons/settings.png" Tapped="BtnSettings_OnClick" />
-    </VariableSizedWrapGrid>
+            <controls:TileButton Caption="keep alive scan" Icon="/Assets/Icons/keepalive.png" Tapped="BtnKeepAlive_OnClick" />
+
+            <controls:TileButton Caption="settings" Icon="/Assets/Icons/settings.png" Tapped="BtnSettings_OnClick" />
+        </ListView>
+    </RelativePanel>
 </Page>
