@@ -7,8 +7,14 @@ using Windows.UI.Xaml.Controls;
 namespace jcMPP.UWP.Controls {
     public sealed partial class TileView : Panel {
         protected override Size MeasureOverride(Size availableSize) {
-            if (Columns == 0) {
-                Columns = (int)(availableSize.Width / MaxItemWidth);
+            Columns = (int)(availableSize.Width / MaxItemWidth);
+
+            if (MinItemWidth != 0 && Math.Floor(availableSize.Width / Columns) < MinItemWidth) {
+                while (Math.Floor(availableSize.Width / Columns) < MinItemWidth) {
+                    Columns--;
+                }
+            } else if (MaxItemWidth != 0 && Columns == 1 && (availableSize.Width / MinItemWidth) > 1) {
+                Columns = (int)availableSize.Width / MinItemWidth;
             }
 
             double finalWidth, finalHeight;
@@ -108,18 +114,31 @@ namespace jcMPP.UWP.Controls {
             set { SetValue(RowsProperty, value); }
         }
 
-        public int MaxItemWidth {
+        public int MaxItemWidth
+        {
             get { return (int)GetValue(MaxItemWidthProperty); }
             set { SetValue(MaxItemWidthProperty, value); }
+
         }
 
-        public Orientation Orientation {
+        public int MinItemWidth
+        {
+            get { return (int)GetValue(MinItemWidthProperty); }
+            set { SetValue(MinItemWidthProperty, value); }
+        }
+
+
+        public Orientation Orientation
+        {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
         public static readonly DependencyProperty MaxItemWidthProperty =
         DependencyProperty.Register("MaxItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMaxItemWidthChanged));
+
+        public static readonly DependencyProperty MinItemWidthProperty =
+       DependencyProperty.Register("MinItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMinItemWidthChanged));
 
 
         public static readonly DependencyProperty ColumnsProperty =
@@ -147,6 +166,12 @@ namespace jcMPP.UWP.Controls {
             int maxItemWidth = (int)e.NewValue;
             if (maxItemWidth < 0)
                 ((TileView)obj).MaxItemWidth = 1;
+        }
+
+        static void OnMinItemWidthChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {
+            int minItemWidth = (int)e.NewValue;
+            if (minItemWidth < 0)
+                ((TileView)obj).MinItemWidth = 0;
         }
 
         static void OnOrientationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {

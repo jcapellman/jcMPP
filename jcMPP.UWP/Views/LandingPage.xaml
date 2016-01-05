@@ -23,7 +23,7 @@
         <ListView RelativePanel.AlignTopWithPanel="True">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:TileView Columns="0" MaxItemWidth="256" Orientation="Horizontal" />
+                    <controls:TileView Columns="0" MaxItemWidth="256" MinItemWidth="128" Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
 
