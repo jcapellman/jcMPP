@@ -24,5 +24,11 @@ namespace jcMPP.UWP.Views {
         private async void BtnCheckForUpdates_OnClick(object sender, RoutedEventArgs e) {
             await CheckForUpdatedDefinitions();
         }
+
+        private void BtnSave_OnClick(object sender, RoutedEventArgs e) {
+            var result = viewModel<SettingsModel>().SaveSettings();
+
+            ShowDialog(!result.HasError ? "Settings Saved" : result.Exception);
+        }
     }
 }

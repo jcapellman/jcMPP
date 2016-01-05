@@ -47,6 +47,6 @@
             <ToggleSwitch Grid.Row="2" Margin="0,40,0,0" IsOn="{Binding Setting_EnableRoaming, Mode=TwoWay}" Header="Enable Roaming Data" />
         </Grid>
 
-        <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnSave" HorizontalAlignment="Right" Content="save" Grid.Column="1" Margin="0,0,10,10" />
+        <Button Grid.Row="2" VerticalAlignment="Bottom" x:Name="btnSave" Click="BtnSave_OnClick" HorizontalAlignment="Right" Content="save" Grid.Column="1" Margin="0,0,10,10" />
     </Grid>
 </local:BasePage>
