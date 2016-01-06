@@ -13,6 +13,7 @@
     <Page.Resources>
         <converters:SignalBarsByteToIcon x:Key="SignalBarsConverter" />
         <converters:NetworkAuthenticationTypeToString x:Key="NetworkAuthenticationTypeToString" />
+        <converters:SSIDConverter x:Key="SsidConverter" />
     </Page.Resources>
 
     <Page.DataContext>
@@ -64,7 +65,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="24" Text="{Binding Ssid, Mode=OneTime}" />
+                            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="24" Text="{Binding Converter={StaticResource SsidConverter}, ConverterParameter='({0})'}" />
                             <Image Grid.Column="1" Stretch="Fill" HorizontalAlignment="Left" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
                         </Grid>
                         
