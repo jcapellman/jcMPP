@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace jcMPP.UWP.Controls {
-    public sealed partial class TileView : Panel {
+    public sealed class TileView : Panel {
         protected override Size MeasureOverride(Size availableSize) {
             Columns = (int)(availableSize.Width / MaxItemWidth);
 
@@ -102,74 +102,66 @@ namespace jcMPP.UWP.Controls {
             return finalSize;
         }
 
-        public int Columns
-        {
+        public int Columns {
             get { return (int)GetValue(ColumnsProperty); }
             set { SetValue(ColumnsProperty, value); }
         }
 
-        public int Rows
-        {
+        public int Rows {
             get { return (int)GetValue(RowsProperty); }
             set { SetValue(RowsProperty, value); }
         }
 
-        public int MaxItemWidth
-        {
+        public int MaxItemWidth {
             get { return (int)GetValue(MaxItemWidthProperty); }
             set { SetValue(MaxItemWidthProperty, value); }
-
         }
 
-        public int MinItemWidth
-        {
+        public int MinItemWidth {
             get { return (int)GetValue(MinItemWidthProperty); }
             set { SetValue(MinItemWidthProperty, value); }
         }
-
-
-        public Orientation Orientation
-        {
+        
+        public Orientation Orientation {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxItemWidthProperty =
-        DependencyProperty.Register("MaxItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMaxItemWidthChanged));
+        public static readonly DependencyProperty MaxItemWidthProperty = DependencyProperty.Register("MaxItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMaxItemWidthChanged));
 
-        public static readonly DependencyProperty MinItemWidthProperty =
-       DependencyProperty.Register("MinItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMinItemWidthChanged));
-
-
-        public static readonly DependencyProperty ColumnsProperty =
-        DependencyProperty.Register("Columns", typeof(int), typeof(TileView), new PropertyMetadata(1, OnColumnsChanged));
-
-
-        public static readonly DependencyProperty RowsProperty =
-        DependencyProperty.Register("Rows", typeof(int), typeof(TileView), new PropertyMetadata(1, OnRowsChanged));
+        public static readonly DependencyProperty MinItemWidthProperty = DependencyProperty.Register("MinItemWidth", typeof(int), typeof(TileView), new PropertyMetadata(1, OnMinItemWidthChanged));
+        
+        public static readonly DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(int), typeof(TileView), new PropertyMetadata(1, OnColumnsChanged));
+        
+        public static readonly DependencyProperty RowsProperty = DependencyProperty.Register("Rows", typeof(int), typeof(TileView), new PropertyMetadata(1, OnRowsChanged));
 
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register("Orientation", typeof(Orientation), typeof(TileView), new PropertyMetadata(1, OnOrientationChanged));
 
         static void OnColumnsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {
-            int cols = (int)e.NewValue;
-            if (cols < 0)
-                ((TileView)obj).Columns = 1;
+            var cols = (int)e.NewValue;
+
+            if (cols < 0) {
+                ((TileView) obj).Columns = 1;
+            }
         }
 
         static void OnRowsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {
-            int rows = (int)e.NewValue;
+            var rows = (int)e.NewValue;
+
             if (rows < 0)
                 ((TileView)obj).Rows = 1;
         }
 
         static void OnMaxItemWidthChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {
-            int maxItemWidth = (int)e.NewValue;
+            var maxItemWidth = (int)e.NewValue;
+
             if (maxItemWidth < 0)
                 ((TileView)obj).MaxItemWidth = 1;
         }
 
         static void OnMinItemWidthChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e) {
-            int minItemWidth = (int)e.NewValue;
+            var minItemWidth = (int)e.NewValue;
+
             if (minItemWidth < 0)
                 ((TileView)obj).MinItemWidth = 0;
         }
