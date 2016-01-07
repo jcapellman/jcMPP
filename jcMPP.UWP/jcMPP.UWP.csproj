@@ -105,6 +105,7 @@
     <Compile Include="Converters\NetworkAuthenticationTypeToString.cs" />
     <Compile Include="Converters\SignalBarsByteToIcon.cs" />
     <Compile Include="Converters\SSIDConverter.cs" />
+    <Compile Include="Converters\TimespanConverter.cs" />
     <Compile Include="Converters\TimeStampToString.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
