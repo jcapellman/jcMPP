@@ -107,6 +107,7 @@
     <Compile Include="Converters\SSIDConverter.cs" />
     <Compile Include="Converters\TimespanConverter.cs" />
     <Compile Include="Converters\TimeStampToString.cs" />
+    <Compile Include="Converters\WifiDirectConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +171,7 @@
     <Content Include="Assets\Icons\wifi_signal_3_bar.png" />
     <Content Include="Assets\Icons\wifi_signal_4_bar.png" />
     <Content Include="Assets\Icons\wifi_signal_5_bar.png" />
+    <Content Include="Assets\wifidirect.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

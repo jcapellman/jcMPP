@@ -9,23 +9,20 @@ namespace jcMPP.UWP.Converters {
                 return null;
             }
 
-            var ts = (TimeSpan) value;
+            var span = (TimeSpan) value;
 
-            var str = string.Empty;
+            var tmpStr =
+                $"{(span.Duration().Days > 0 ? string.Format("{0:0} day{1}, ", span.Days, span.Days == 1 ? string.Empty : "s") : string.Empty)}{(span.Duration().Hours > 0 ? string.Format("{0:0} hour{1}, ", span.Hours, span.Hours == 1 ? String.Empty : "s") : string.Empty)}{(span.Duration().Minutes > 0 ? string.Format("{0:0} minute{1}, ", span.Minutes, span.Minutes == 1 ? String.Empty : "s") : string.Empty)}{(span.Duration().Seconds > 0 ? string.Format("{0:0} second{1}", span.Seconds, span.Seconds == 1 ? String.Empty : "s") : string.Empty)}";
 
-            if (ts.TotalDays > 0) {
-                str += $"{ts.TotalDays} days";
+            if (tmpStr.EndsWith(", ")) {
+                tmpStr = tmpStr.Substring(0, tmpStr.Length - 2);
             }
 
-            if (ts.TotalHours > 0) {
-                str += $"{ts.TotalHours} hours";
+            if (string.IsNullOrEmpty(tmpStr)) {
+                tmpStr = "0 seconds";
             }
 
-            if (ts.TotalMinutes > 0) {
-                str += $"{ts.TotalMinutes} minutes";
-            }
-
-            return str;
+            return tmpStr;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language) {

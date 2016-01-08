@@ -15,6 +15,7 @@
         <converters:NetworkAuthenticationTypeToString x:Key="NetworkAuthenticationTypeToString" />
         <converters:SSIDConverter x:Key="SsidConverter" />
         <converters:TimespanConverter x:Key="TimespanConverter" />
+        <converters:WifiDirectConverter x:Key="WifiDirectConverter" />
     </Page.Resources>
 
     <Page.DataContext>
@@ -65,10 +66,13 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="24" Text="{Binding Converter={StaticResource SsidConverter}, ConverterParameter='({0})'}" />
                             <Image Grid.Column="1" Stretch="Fill" HorizontalAlignment="Left" Width="32" Height="32" Source="{Binding SignalBars, Converter={StaticResource SignalBarsConverter}}" />
+
+                            <Image Grid.Column="2" Stretch="Fill" HorizontalAlignment="Left" Width="32" Height="32" Source="{Binding IsWiFiDirect, Converter={StaticResource WifiDirectConverter}, ConverterParameter='({0})'}" />
                         </Grid>
                         
                         <Grid Grid.Row="1">
