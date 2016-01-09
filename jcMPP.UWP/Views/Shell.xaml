@@ -107,6 +107,15 @@
                             <TextBlock Text="" />
                         </RadioButton.Tag>
                     </RadioButton>
+
+                    <RadioButton Command="{Binding NavCommand}" Content="About" GroupName="Nav">
+                        <RadioButton.CommandParameter>
+                            <views:NavType Type="views:AboutPage" />
+                        </RadioButton.CommandParameter>
+                        <RadioButton.Tag>
+                            <TextBlock Text="" />
+                        </RadioButton.Tag>
+                    </RadioButton>
                 </StackPanel>
             </Grid>
         </SplitView.Pane>
