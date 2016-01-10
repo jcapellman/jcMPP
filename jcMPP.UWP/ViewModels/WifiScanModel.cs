@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 using Windows.Devices.WiFi;
@@ -12,8 +13,7 @@ using jcMPP.UWP.Library.PlatformImplementations;
 
 namespace jcMPP.UWP.ViewModels {
     public class WifiScanModel : BaseModel {
-        private WiFiAdapter _adapter;
-
+    
         private bool _Enabled_btnRefresh;
 
         public bool Enabled_btnRefresh {
@@ -34,6 +34,13 @@ namespace jcMPP.UWP.ViewModels {
 
         public WifiScanModel() : base(new UWPFileIO(App.AppSetting)) { }
 
+        private WiFiAdapter _primaryAdapter;
+
+        public WiFiAdapter PrimaryAdapter {
+            get { return _primaryAdapter; }
+            set { _primaryAdapter = value; OnPropertyChanged(); }
+        }
+
         public async Task<WiFiScanResultTypes> LoadData() {
             Enabled_btnRefresh = false;
 
@@ -50,21 +57,21 @@ namespace jcMPP.UWP.ViewModels {
 
                 return WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD;
             }
-
+            
             var result = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
-
+            
             if (result.Count > 0) {
-                _adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
+                PrimaryAdapter = await WiFiAdapter.FromIdAsync(result[0].Id);
             } else {
                 Enabled_btnRefresh = true;
                 HideRunning();
 
                 return WiFiScanResultTypes.NO_WIFI_CARD;
             }
+            
+            await PrimaryAdapter.ScanAsync();
 
-            await _adapter.ScanAsync();
-
-            foreach (var network in _adapter.NetworkReport.AvailableNetworks) {
+            foreach (var network in PrimaryAdapter.NetworkReport.AvailableNetworks) {
                 WifiNetworks.Add(network);
             }
 

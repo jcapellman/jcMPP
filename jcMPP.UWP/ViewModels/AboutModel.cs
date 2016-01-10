@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
-
-using Windows.UI.Xaml;
-using Windows.ApplicationModel;
+﻿using Windows.ApplicationModel;
 
 using jcMPP.PCL.PlatformAbstractions;
 
@@ -18,8 +14,7 @@ namespace jcMPP.UWP.ViewModels {
             set { _versionString = value; OnPropertyChanged(); }
         }
 
-        public void LoadData()
-        {
+        public void LoadData() {
             var version = Package.Current.Id.Version;
 
             VersionString = $"Version {version.Major}.{version.Minor}.{version.Revision}.{version.Build}";

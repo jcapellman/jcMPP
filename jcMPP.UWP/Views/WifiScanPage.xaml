@@ -16,6 +16,7 @@
         <converters:SSIDConverter x:Key="SsidConverter" />
         <converters:TimespanConverter x:Key="TimespanConverter" />
         <converters:WifiDirectConverter x:Key="WifiDirectConverter" />
+        <converters:BitsToMegabitsConverter x:Key="BitToMegabitsConverter" />
     </Page.Resources>
 
     <Page.DataContext>
@@ -29,6 +30,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -50,8 +52,18 @@
         </Grid>
         
         <TextBlock Grid.Row="1" Margin="20,10,0,10" Text="WiFi Scan" Style="{StaticResource HeaderTextBlockStyle}" />
+
+        <Grid Grid.Row="2" Margin="20,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" Text="primary wifi adapter speed" Style="{StaticResource SubheaderTextBlockStyle}" />
+            <TextBlock Grid.Column="1" Margin="10,0,0,0"  FontWeight="Bold" Text="{Binding PrimaryAdapter.NetworkAdapter.OutboundMaxBitsPerSecond, ConverterParameter='({0})', Converter={StaticResource BitToMegabitsConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" />
+        </Grid>
         
-        <ListView Grid.Row="2" Margin="10,0,0,0" ItemsSource="{Binding WifiNetworks}">
+        <ListView Grid.Row="3" Margin="10,0,0,0" ItemsSource="{Binding WifiNetworks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,0,0,10">

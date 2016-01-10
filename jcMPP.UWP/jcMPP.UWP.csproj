@@ -102,6 +102,7 @@
       <DependentUpon>TileButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TileView.cs" />
+    <Compile Include="Converters\BitsToMegabitsConverter.cs" />
     <Compile Include="Converters\NetworkAuthenticationTypeToString.cs" />
     <Compile Include="Converters\SignalBarsByteToIcon.cs" />
     <Compile Include="Converters\SSIDConverter.cs" />
