@@ -52,7 +52,7 @@ namespace jcMPP.UWP.ViewModels {
 
             if (access != WiFiAccessStatus.Allowed) {
                 Enabled_btnRefresh = true;
-
+                
                 HideRunning();
 
                 return WiFiScanResultTypes.NO_ACCESS_TO_WIFI_CARD;

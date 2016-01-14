@@ -20,5 +20,16 @@ namespace jcMPP.UWP.Views {
 
             ShowDialog("Hash Crack successful");
         }
+
+        private void BtnBenchmark_OnClick(object sender, RoutedEventArgs e) {
+            var result = viewModel<HashCrackerModel>().Benchmark();
+
+            if (result.HasError) {
+                ShowDialog(result.Exception);
+                return;
+            }
+
+            ShowDialog($"{result.Value} seconds to hash {HashCrackerModel.HASHES_FOR_BENCHMARK} hashes");
+        }
     }
 }

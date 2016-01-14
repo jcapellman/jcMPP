@@ -107,7 +107,7 @@
                             <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding NetworkRssiInDecibelMilliwatts, Mode=OneTime}" />
                         </Grid>
 
-                        <Grid Grid.Row="3">
+                        <Grid Grid.Row="4">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
