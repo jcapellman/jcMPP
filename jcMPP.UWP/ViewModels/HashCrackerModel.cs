@@ -12,6 +12,7 @@ using jcMPP.PCL.Handlers;
 using jcMPP.PCL.Objects;
 using jcMPP.PCL.Objects.Hashes;
 using jcMPP.PCL.PlatformAbstractions;
+using jcMPP.UWP.Library.PlatformImplementations;
 
 namespace jcMPP.UWP.ViewModels {
     public class HashCrackerModel : BaseModel {
@@ -25,21 +26,29 @@ namespace jcMPP.UWP.ViewModels {
 
         public const int HASHES_FOR_BENCHMARK = 100000;
 
-        public CTO<double> Benchmark() {
+        public HashCrackerModel() : base(new UWPFileIO(App.AppSetting)) {
+            HideRunning();
+        }
+
+        public async Task<CTO<double>> Benchmark() {
             ShowRunning();
 
             var startTime = DateTime.Now;
 
-            for (var x = 0; x < HASHES_FOR_BENCHMARK; x++) {
-                var hasher = HashAlgorithmProvider.OpenAlgorithm("MD5");
-                var hashed = hasher.HashData(Encoding.UTF8.GetBytes(x.ToString()).AsBuffer());
+            var tBenchmark = Task.Factory.StartNew(() => {
+                for (var x = 0; x < HASHES_FOR_BENCHMARK; x++) {
+                    var hasher = HashAlgorithmProvider.OpenAlgorithm("MD5");
+                    var hashed = hasher.HashData(Encoding.UTF8.GetBytes(x.ToString()).AsBuffer());
 
-                CryptographicBuffer.EncodeToHexString(hashed);
-            }
+                    CryptographicBuffer.EncodeToHexString(hashed);
+                }
+            });
+
+            await tBenchmark.AsAsyncAction();
 
             HideRunning();
 
-            return new CTO<double>(DateTime.Now.Subtract(startTime).TotalSeconds);
+            return new CTO<double>(Math.Round(DateTime.Now.Subtract(startTime).TotalSeconds, 2));
         }
 
         public async Task<CTO<bool>> SubmitHashes() {

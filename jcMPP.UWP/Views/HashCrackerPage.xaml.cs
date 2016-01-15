@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml;
-using jcMPP.PCL.Enums;
+
 using jcMPP.UWP.Library.PlatformImplementations;
 using jcMPP.UWP.ViewModels;
 
@@ -21,8 +21,8 @@ namespace jcMPP.UWP.Views {
             ShowDialog("Hash Crack successful");
         }
 
-        private void BtnBenchmark_OnClick(object sender, RoutedEventArgs e) {
-            var result = viewModel<HashCrackerModel>().Benchmark();
+        private async void BtnBenchmark_OnClick(object sender, RoutedEventArgs e) {
+            var result = await viewModel<HashCrackerModel>().Benchmark();
 
             if (result.HasError) {
                 ShowDialog(result.Exception);

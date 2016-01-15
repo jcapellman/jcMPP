@@ -19,8 +19,21 @@
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
-        <Pivot>
+        <Grid Grid.Row="0" Height="30">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.25" />
+            </Grid.Background>
+
+            <ProgressBar Visibility="{Binding ProgressBarRunning, Mode=TwoWay}" Style="{StaticResource MainProgressBar}" />
+        </Grid>
+        
+        <Pivot Grid.Row="1">
             <PivotItem>
                 <PivotItem.Header>
                     <TextBlock Text="hash crack" Style="{StaticResource PivotHeaderTextBlock}" />
